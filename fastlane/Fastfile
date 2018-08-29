@@ -1,0 +1,17 @@
+fastlane_version "2.63.0"
+
+default_platform :ios
+
+platform :ios do
+
+  lane :debug_build do
+    skip_docs
+    xcodebuild(configuration: "Debug", clean: true, build: true)
+  end
+
+  lane :release_build do
+    skip_docs
+    xcodebuild(configuration: "Release", clean: true, build: true)
+  end
+
+end

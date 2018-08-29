@@ -1,0 +1,24 @@
+disabled_rules:
+  - line_length
+  - nesting
+  - variable_name
+  - type_name
+  - missing_docs
+  - function_body_length
+  - cyclomatic_complexity
+  - class_delegate_protocol
+file_length:
+  warning: 800
+  error: 1000
+type_body_length:
+  warning: 400
+  error: 500
+comma:
+  severity: error
+colon:
+  severity: error
+excluded:
+  - Carthage
+  - Pods
+opt_in_rules:
+  - empty_count

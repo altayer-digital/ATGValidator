@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FILEHEADER</key>
+	<string>
+//  ___FILENAME___
+//  ___PACKAGENAME___
+//
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//  ___COPYRIGHT___
+//
+//  Save to the extent permitted by law, you may not use, copy, modify,
+//  distribute or create derivative works of this material or any part
+//  of it without the prior written consent of ___ORGANIZATIONNAME___.
+//  Any reproduction of this material must contain this notice.
+//</string>
+</dict>
+</plist>
