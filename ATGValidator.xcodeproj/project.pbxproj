@@ -15,6 +15,7 @@
 		96554D1E213807FD0089FF5C /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D1C213807FD0089FF5C /* Validatable.swift */; };
 		96554D2D213808710089FF5C /* BooleanRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D2A213808710089FF5C /* BooleanRule.swift */; };
 		96554D2E213808710089FF5C /* StringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D2C213808710089FF5C /* StringRule.swift */; };
+		96554D30213808A40089FF5C /* LengthRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D2F213808A40089FF5C /* LengthRule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		96554D1C213807FD0089FF5C /* Validatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
 		96554D2A213808710089FF5C /* BooleanRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanRule.swift; sourceTree = "<group>"; };
 		96554D2C213808710089FF5C /* StringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRule.swift; sourceTree = "<group>"; };
+		96554D2F213808A40089FF5C /* LengthRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LengthRule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		96554D2B213808710089FF5C /* String */ = {
 			isa = PBXGroup;
 			children = (
+				96554D2F213808A40089FF5C /* LengthRule.swift */,
 				96554D2C213808710089FF5C /* StringRule.swift */,
 			);
 			path = String;
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96554D30213808A40089FF5C /* LengthRule.swift in Sources */,
 				96554D1E213807FD0089FF5C /* Validatable.swift in Sources */,
 				96554D2E213808710089FF5C /* StringRule.swift in Sources */,
 				96554D2D213808710089FF5C /* BooleanRule.swift in Sources */,
