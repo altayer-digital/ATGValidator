@@ -16,6 +16,9 @@
 		96554D2D213808710089FF5C /* BooleanRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D2A213808710089FF5C /* BooleanRule.swift */; };
 		96554D2E213808710089FF5C /* StringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D2C213808710089FF5C /* StringRule.swift */; };
 		96554D30213808A40089FF5C /* LengthRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D2F213808A40089FF5C /* LengthRule.swift */; };
+		96554D34213824C90089FF5C /* ValidatorCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D33213824C90089FF5C /* ValidatorCache.swift */; };
+		96554D36213825370089FF5C /* ValidatableInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D35213825370089FF5C /* ValidatableInterface.swift */; };
+		96554D382138257A0089FF5C /* UITextField+ATGValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D372138257A0089FF5C /* UITextField+ATGValidator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +44,9 @@
 		96554D2A213808710089FF5C /* BooleanRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanRule.swift; sourceTree = "<group>"; };
 		96554D2C213808710089FF5C /* StringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRule.swift; sourceTree = "<group>"; };
 		96554D2F213808A40089FF5C /* LengthRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LengthRule.swift; sourceTree = "<group>"; };
+		96554D33213824C90089FF5C /* ValidatorCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorCache.swift; sourceTree = "<group>"; };
+		96554D35213825370089FF5C /* ValidatableInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableInterface.swift; sourceTree = "<group>"; };
+		96554D372138257A0089FF5C /* UITextField+ATGValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ATGValidator.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				96554D17213807BB0089FF5C /* Rules */,
+				96554D32213824B50089FF5C /* ValidatableInterface */,
 				96554D16213807BB0089FF5C /* Result.swift */,
 				96554D1C213807FD0089FF5C /* Validatable.swift */,
 			);
@@ -134,6 +141,16 @@
 				96554D2C213808710089FF5C /* StringRule.swift */,
 			);
 			path = String;
+			sourceTree = "<group>";
+		};
+		96554D32213824B50089FF5C /* ValidatableInterface */ = {
+			isa = PBXGroup;
+			children = (
+				96554D33213824C90089FF5C /* ValidatorCache.swift */,
+				96554D35213825370089FF5C /* ValidatableInterface.swift */,
+				96554D372138257A0089FF5C /* UITextField+ATGValidator.swift */,
+			);
+			path = ValidatableInterface;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,11 +280,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				96554D30213808A40089FF5C /* LengthRule.swift in Sources */,
+				96554D36213825370089FF5C /* ValidatableInterface.swift in Sources */,
+				96554D34213824C90089FF5C /* ValidatorCache.swift in Sources */,
 				96554D1E213807FD0089FF5C /* Validatable.swift in Sources */,
 				96554D2E213808710089FF5C /* StringRule.swift in Sources */,
 				96554D2D213808710089FF5C /* BooleanRule.swift in Sources */,
 				96554D19213807BB0089FF5C /* Result.swift in Sources */,
 				96554D1A213807BB0089FF5C /* Rule.swift in Sources */,
+				96554D382138257A0089FF5C /* UITextField+ATGValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

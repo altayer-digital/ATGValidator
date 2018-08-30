@@ -11,19 +11,23 @@
 //  Any reproduction of this material must contain this notice.
 //
 
-//10
 // TODO: Add documentation
 public protocol Validatable {
 
+    var inputValue: Any { get }
     func satisfyAll(rules: [Rule]) -> Result
     func satisfyAny(rules: [Rule]) -> Result
 }
 
 extension Validatable {
 
+    public var inputValue: Any {
+        return self
+    }
+
     public func satisfyAll(rules: [Rule]) -> Result {
 
-        var result = Result.succeed(self)
+        var result = Result.succeed(inputValue)
 
         rules.forEach({ result = result.and($0) })
 
@@ -32,7 +36,7 @@ extension Validatable {
 
     public func satisfyAny(rules: [Rule]) -> Result {
 
-        var result = Result.fail(self)
+        var result = Result.fail(inputValue)
 
         rules.forEach({ result = result.or($0) })
 
