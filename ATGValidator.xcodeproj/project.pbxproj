@@ -10,6 +10,8 @@
 		964F78112136B750004A6017 /* ATGValidator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F78072136B750004A6017 /* ATGValidator.framework */; };
 		964F78162136B750004A6017 /* ATGValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964F78152136B750004A6017 /* ATGValidatorTests.swift */; };
 		964F78182136B750004A6017 /* ATGValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 964F780A2136B750004A6017 /* ATGValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96554D19213807BB0089FF5C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D16213807BB0089FF5C /* Result.swift */; };
+		96554D1A213807BB0089FF5C /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D18213807BB0089FF5C /* Rule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		964F78102136B750004A6017 /* ATGValidatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATGValidatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		964F78152136B750004A6017 /* ATGValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATGValidatorTests.swift; sourceTree = "<group>"; };
 		964F78172136B750004A6017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96554D16213807BB0089FF5C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		96554D18213807BB0089FF5C /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 		964F78092136B750004A6017 /* ATGValidator */ = {
 			isa = PBXGroup;
 			children = (
+				96554D15213807BB0089FF5C /* Source */,
 				964F780A2136B750004A6017 /* ATGValidator.h */,
 				964F780B2136B750004A6017 /* Info.plist */,
 			);
@@ -84,6 +89,23 @@
 				964F78172136B750004A6017 /* Info.plist */,
 			);
 			path = ATGValidatorTests;
+			sourceTree = "<group>";
+		};
+		96554D15213807BB0089FF5C /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				96554D16213807BB0089FF5C /* Result.swift */,
+				96554D17213807BB0089FF5C /* Rules */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		96554D17213807BB0089FF5C /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				96554D18213807BB0089FF5C /* Rule.swift */,
+			);
+			path = Rules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +234,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96554D19213807BB0089FF5C /* Result.swift in Sources */,
+				96554D1A213807BB0089FF5C /* Rule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +429,7 @@
 		964F781F2136B750004A6017 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ATGValidatorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -422,6 +447,7 @@
 		964F78202136B750004A6017 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ATGValidatorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
