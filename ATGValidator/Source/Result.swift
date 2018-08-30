@@ -35,3 +35,41 @@ public struct Result {
         return Result(status: .success, errors: nil, value: value)
     }
 }
+
+extension Result {
+
+    internal func and(_ rule: Rule) -> Result {
+
+        var result = self
+        let newResult = rule.validate(value: result.value)
+
+        switch result.status {
+        case .success:
+            return newResult
+        case .failure:
+            if let errors = newResult.errors {
+                result.errors?.append(contentsOf: errors)
+            }
+            result.value = newResult.value
+            return result
+        }
+    }
+
+    internal func or(_ rule: Rule) -> Result {
+
+        var result = self
+
+        switch result.status {
+        case .success:
+            return result
+        case .failure:
+            let newResult = rule.validate(value: result.value)
+            result.status = newResult.status
+            result.value = newResult.value
+            if let errors = newResult.errors {
+                result.errors?.append(contentsOf: errors)
+            }
+            return result
+        }
+    }
+}
