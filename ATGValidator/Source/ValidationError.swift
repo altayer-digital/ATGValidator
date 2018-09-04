@@ -21,4 +21,9 @@ public enum ValidationError: Error {
     case longerThanMaximumLength
     case lengthOutOfRange
     case valueOutOfRange
+    case regexMismatch
+    case invalidEmail
+    case numberNotFound
+    case lowerCaseNotFound
+    case upperCaseNotFound
 }

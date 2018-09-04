@@ -15,6 +15,7 @@
 		96524494213EAFFD00EE298B /* EqualityRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96524493213EAFFD00EE298B /* EqualityRule.swift */; };
 		96524496213EB1AD00EE298B /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96524495213EB1AD00EE298B /* ValidationError.swift */; };
 		9652449B213EB7B800EE298B /* RangeRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9652449A213EB7B800EE298B /* RangeRule.swift */; };
+		9652449D213EC2F900EE298B /* StringRegexRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9652449C213EC2F900EE298B /* StringRegexRule.swift */; };
 		96554D19213807BB0089FF5C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D16213807BB0089FF5C /* Result.swift */; };
 		96554D1A213807BB0089FF5C /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D18213807BB0089FF5C /* Rule.swift */; };
 		96554D1E213807FD0089FF5C /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D1C213807FD0089FF5C /* Validatable.swift */; };
@@ -46,6 +47,7 @@
 		96524493213EAFFD00EE298B /* EqualityRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualityRule.swift; sourceTree = "<group>"; };
 		96524495213EB1AD00EE298B /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		9652449A213EB7B800EE298B /* RangeRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeRule.swift; sourceTree = "<group>"; };
+		9652449C213EC2F900EE298B /* StringRegexRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringRegexRule.swift; sourceTree = "<group>"; };
 		96554D16213807BB0089FF5C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		96554D18213807BB0089FF5C /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		96554D1C213807FD0089FF5C /* Validatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				96554D2F213808A40089FF5C /* StringLengthRule.swift */,
+				9652449C213EC2F900EE298B /* StringRegexRule.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				96554D19213807BB0089FF5C /* Result.swift in Sources */,
 				96554D1A213807BB0089FF5C /* Rule.swift in Sources */,
 				96554D382138257A0089FF5C /* UITextField+ATGValidator.swift in Sources */,
+				9652449D213EC2F900EE298B /* StringRegexRule.swift in Sources */,
 				96524494213EAFFD00EE298B /* EqualityRule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

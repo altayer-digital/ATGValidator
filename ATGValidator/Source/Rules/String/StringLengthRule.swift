@@ -12,23 +12,24 @@
 //
 
 // TODO: Add documentation
+
 public struct StringLengthRule: Rule {
 
-    var min: Int = 0
-    var max: Int = Int.max
-    var shouldTrimBeforeValidation: Bool = true
+    private let min: Int
+    private let max: Int
+    private let trimWhiteSpace: Bool
     public var error: Error
 
     public init(
         min: Int = 0,
         max: Int = Int.max,
-        shouldTrimBeforeValidation: Bool = true,
+        trimWhiteSpace: Bool = true,
         error: Error = ValidationError.lengthOutOfRange
         ) {
 
         self.min = min
         self.max = max
-        self.shouldTrimBeforeValidation = shouldTrimBeforeValidation
+        self.trimWhiteSpace = trimWhiteSpace
         self.error = error
     }
 
@@ -57,7 +58,7 @@ public struct StringLengthRule: Rule {
 
         var valueToBeValidated = inputValue
 
-        if shouldTrimBeforeValidation {
+        if trimWhiteSpace {
             valueToBeValidated = valueToBeValidated.trimmingCharacters(in: CharacterSet.whitespaces)
         }
 
