@@ -1,8 +1,8 @@
 //
-//  Rule.swift
+//  ValidationError.swift
 //  ATGValidator
 //
-//  Created by Suraj Thomas K on 8/29/18.
+//  Created by Suraj Thomas K on 9/4/18.
 //  Copyright © 2018 Al Tayer Group LLC. All rights reserved.
 //
 //  Save to the extent permitted by law, you may not use, copy, modify,
@@ -13,9 +13,11 @@
 
 // TODO: Add documentation
 
-public protocol Rule {
+public enum ValidationError: Error {
 
-    var error: Error { get set }
-    func canValidate(value: Any) -> Bool
-    func validate(value: Any) -> Result
+    case invalidType
+    case notEqual
+    case shorterThanMinimumLength
+    case longerThanMaximumLength
+    case lengthOutOfBounds
 }

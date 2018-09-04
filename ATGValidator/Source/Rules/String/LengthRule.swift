@@ -23,7 +23,7 @@ public struct LengthRule: StringRule {
         min: Int = 0,
         max: Int = Int.max,
         shouldTrimBeforeValidation: Bool = true,
-        error: Error
+        error: Error = ValidationError.lengthOutOfBounds
         ) {
 
         self.min = min
@@ -32,12 +32,18 @@ public struct LengthRule: StringRule {
         self.error = error
     }
 
-    public static func min(_ min: Int, error: Error) -> LengthRule {
+    public static func min(
+        _ min: Int,
+        error: Error = ValidationError.shorterThanMinimumLength
+        ) -> LengthRule {
 
         return LengthRule(min: min, error: error)
     }
 
-    public static func max(_ max: Int, error: Error) -> LengthRule {
+    public static func max(
+        _ max: Int,
+        error: Error = ValidationError.longerThanMaximumLength
+        ) -> LengthRule {
 
         return LengthRule(max: max, error: error)
     }
