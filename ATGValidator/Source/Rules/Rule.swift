@@ -16,6 +16,6 @@
 public protocol Rule {
 
     var error: Error { get set }
-    func canValidate(value: Any) -> Bool
+
     func validate(value: Any) -> Result
 }

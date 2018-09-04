@@ -12,7 +12,7 @@
 //
 
 // TODO: Add documentation
-public struct LengthRule: StringRule {
+public struct StringLengthRule: Rule {
 
     var min: Int = 0
     var max: Int = Int.max
@@ -35,17 +35,17 @@ public struct LengthRule: StringRule {
     public static func min(
         _ min: Int,
         error: Error = ValidationError.shorterThanMinimumLength
-        ) -> LengthRule {
+        ) -> StringLengthRule {
 
-        return LengthRule(min: min, error: error)
+        return StringLengthRule(min: min, error: error)
     }
 
     public static func max(
         _ max: Int,
         error: Error = ValidationError.longerThanMaximumLength
-        ) -> LengthRule {
+        ) -> StringLengthRule {
 
-        return LengthRule(max: max, error: error)
+        return StringLengthRule(max: max, error: error)
     }
 
     public func validate(value: Any) -> Result {

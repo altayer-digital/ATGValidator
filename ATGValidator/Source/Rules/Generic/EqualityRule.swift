@@ -23,11 +23,6 @@ public struct EqualityRule<T: Equatable>: Rule {
         self.error = error
     }
 
-    public func canValidate(value: Any) -> Bool {
-
-        return value is T
-    }
-
     public func validate(value: Any) -> Result {
 
         guard let valueToTest = value as? T else {

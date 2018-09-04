@@ -18,8 +18,6 @@
 		96554D19213807BB0089FF5C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D16213807BB0089FF5C /* Result.swift */; };
 		96554D1A213807BB0089FF5C /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D18213807BB0089FF5C /* Rule.swift */; };
 		96554D1E213807FD0089FF5C /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D1C213807FD0089FF5C /* Validatable.swift */; };
-		96554D2D213808710089FF5C /* BooleanRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D2A213808710089FF5C /* BooleanRule.swift */; };
-		96554D2E213808710089FF5C /* StringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D2C213808710089FF5C /* StringRule.swift */; };
 		96554D30213808A40089FF5C /* StringLengthRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D2F213808A40089FF5C /* StringLengthRule.swift */; };
 		96554D34213824C90089FF5C /* ValidatorCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D33213824C90089FF5C /* ValidatorCache.swift */; };
 		96554D36213825370089FF5C /* ValidatableInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D35213825370089FF5C /* ValidatableInterface.swift */; };
@@ -51,8 +49,6 @@
 		96554D16213807BB0089FF5C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		96554D18213807BB0089FF5C /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		96554D1C213807FD0089FF5C /* Validatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
-		96554D2A213808710089FF5C /* BooleanRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanRule.swift; sourceTree = "<group>"; };
-		96554D2C213808710089FF5C /* StringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRule.swift; sourceTree = "<group>"; };
 		96554D2F213808A40089FF5C /* StringLengthRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringLengthRule.swift; sourceTree = "<group>"; };
 		96554D33213824C90089FF5C /* ValidatorCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorCache.swift; sourceTree = "<group>"; };
 		96554D35213825370089FF5C /* ValidatableInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableInterface.swift; sourceTree = "<group>"; };
@@ -140,25 +136,15 @@
 			isa = PBXGroup;
 			children = (
 				96524492213EAFEB00EE298B /* Generic */,
-				96554D29213808710089FF5C /* Boolean */,
 				96554D2B213808710089FF5C /* String */,
 				96554D18213807BB0089FF5C /* Rule.swift */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
 		};
-		96554D29213808710089FF5C /* Boolean */ = {
-			isa = PBXGroup;
-			children = (
-				96554D2A213808710089FF5C /* BooleanRule.swift */,
-			);
-			path = Boolean;
-			sourceTree = "<group>";
-		};
 		96554D2B213808710089FF5C /* String */ = {
 			isa = PBXGroup;
 			children = (
-				96554D2C213808710089FF5C /* StringRule.swift */,
 				96554D2F213808A40089FF5C /* StringLengthRule.swift */,
 			);
 			path = String;
@@ -310,8 +296,6 @@
 				96524490213E80E800EE298B /* UITextView+ATGValidator.swift in Sources */,
 				96554D34213824C90089FF5C /* ValidatorCache.swift in Sources */,
 				96554D1E213807FD0089FF5C /* Validatable.swift in Sources */,
-				96554D2E213808710089FF5C /* StringRule.swift in Sources */,
-				96554D2D213808710089FF5C /* BooleanRule.swift in Sources */,
 				96554D19213807BB0089FF5C /* Result.swift in Sources */,
 				96554D1A213807BB0089FF5C /* Rule.swift in Sources */,
 				96554D382138257A0089FF5C /* UITextField+ATGValidator.swift in Sources */,
