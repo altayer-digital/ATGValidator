@@ -11,6 +11,8 @@
 //  Any reproduction of this material must contain this notice.
 //
 
+// TODO: Add documentation
+
 public protocol ValidatableInterface: class, Validatable {
 
     func validateOnInputChange(_ validate: Bool)
@@ -30,9 +32,7 @@ extension ValidatableInterface where Self: Hashable {
             return ValidatorCache.validValues[self.hashValue]
         }
         set {
-            if let value = newValue {
-                ValidatorCache.validValues[self.hashValue] = value
-            }
+            ValidatorCache.validValues[self.hashValue] = newValue
         }
     }
 
@@ -41,9 +41,7 @@ extension ValidatableInterface where Self: Hashable {
             return ValidatorCache.rules[self.hashValue]
         }
         set {
-            if let rules = newValue {
-                ValidatorCache.rules[self.hashValue] = rules
-            }
+            ValidatorCache.rules[self.hashValue] = newValue
         }
     }
 
@@ -52,9 +50,24 @@ extension ValidatableInterface where Self: Hashable {
             return ValidatorCache.validationHandlers[self.hashValue]
         }
         set {
-            if let handler = newValue {
-                ValidatorCache.validationHandlers[self.hashValue] = handler
-            }
+            ValidatorCache.validationHandlers[self.hashValue] = newValue
         }
+    }
+
+    internal var formHandler: ValidationHandler? {
+        get {
+            return ValidatorCache.formHandlers[self.hashValue]
+        }
+        set {
+            ValidatorCache.formHandlers[self.hashValue] = newValue
+        }
+    }
+
+    public func cleanUpFromValidatorCache() {
+
+        validValue = nil
+        validationRules = nil
+        validationHandler = nil
+        formHandler = nil
     }
 }

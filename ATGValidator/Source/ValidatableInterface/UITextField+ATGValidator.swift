@@ -11,6 +11,8 @@
 //  Any reproduction of this material must contain this notice.
 //
 
+// TODO: Add documentation
+
 extension UITextField: ValidatableInterface {
 
     public var inputValue: Any {
@@ -40,5 +42,6 @@ extension UITextField: ValidatableInterface {
         }
         let handler = ValidatorCache.validationHandlers[sender.hash]
         handler?(result)
+        formHandler?(result)
     }
 }

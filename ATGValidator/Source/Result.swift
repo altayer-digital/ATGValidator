@@ -72,4 +72,18 @@ extension Result {
             return result
         }
     }
+
+    internal func merge(_ other: Result) -> Result {
+
+        switch (status, other.status) {
+        case (.success, .success):
+            return Result.succeed(value)
+        case (.success, .failure):
+            return Result.fail(value, withErrors: other.errors)
+        case (.failure, .success):
+            return Result.fail(value, withErrors: errors)
+        case (.failure, .failure):
+            return Result.fail(value, withErrors: (errors ?? []) + (other.errors ?? []))
+        }
+    }
 }

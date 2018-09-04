@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9625E936213D2813003FB353 /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625E935213D2813003FB353 /* FormValidator.swift */; };
 		964F78112136B750004A6017 /* ATGValidator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F78072136B750004A6017 /* ATGValidator.framework */; };
 		964F78162136B750004A6017 /* ATGValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964F78152136B750004A6017 /* ATGValidatorTests.swift */; };
 		964F78182136B750004A6017 /* ATGValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 964F780A2136B750004A6017 /* ATGValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9625E935213D2813003FB353 /* FormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
 		964F78072136B750004A6017 /* ATGValidator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ATGValidator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964F780A2136B750004A6017 /* ATGValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATGValidator.h; sourceTree = "<group>"; };
 		964F780B2136B750004A6017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				96554D33213824C90089FF5C /* ValidatorCache.swift */,
 				96554D35213825370089FF5C /* ValidatableInterface.swift */,
 				96554D372138257A0089FF5C /* UITextField+ATGValidator.swift */,
+				9625E935213D2813003FB353 /* FormValidator.swift */,
 			);
 			path = ValidatableInterface;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9625E936213D2813003FB353 /* FormValidator.swift in Sources */,
 				96554D30213808A40089FF5C /* LengthRule.swift in Sources */,
 				96554D36213825370089FF5C /* ValidatableInterface.swift in Sources */,
 				96554D34213824C90089FF5C /* ValidatorCache.swift in Sources */,

@@ -21,4 +21,5 @@ internal struct ValidatorCache {
     internal static var rules: [Int: [Rule]] = [:]
     internal static var validationHandlers: [Int: ValidationHandler] = [:]
     internal static var validValues: [Int: Any] = [:]
+    internal static var formHandlers: [Int: ValidationHandler] = [:]
 }
