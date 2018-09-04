@@ -23,7 +23,7 @@ public struct LengthRule: StringRule {
         min: Int = 0,
         max: Int = Int.max,
         shouldTrimBeforeValidation: Bool = true,
-        error: Error = ValidationError.lengthOutOfBounds
+        error: Error = ValidationError.lengthOutOfRange
         ) {
 
         self.min = min
