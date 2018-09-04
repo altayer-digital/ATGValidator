@@ -1,8 +1,8 @@
 //
-//  UITextField+ATGValidator.swift
+//  UITextView+ATGValidator.swift
 //  ATGValidator
 //
-//  Created by Suraj Thomas K on 8/30/18.
+//  Created by Suraj Thomas K on 9/4/18.
 //  Copyright © 2018 Al Tayer Group LLC. All rights reserved.
 //
 //  Save to the extent permitted by law, you may not use, copy, modify,
@@ -13,22 +13,31 @@
 
 // TODO: Add documentation
 
-extension UITextField: ValidatableInterface {
+extension UITextView: ValidatableInterface {
 
     public var inputValue: Any {
-        return text ?? ""
+        return text
     }
 
     public func validateOnInputChange(_ validate: Bool) {
         switch validate {
         case true:
-            addTarget(self, action: #selector(validateTextField), for: .editingChanged)
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(validateTextView),
+                name: .UITextViewTextDidChange,
+                object: self
+            )
         case false:
-            removeTarget(self, action: #selector(validateTextField), for: .editingChanged)
+            NotificationCenter.default.removeObserver(
+                self,
+                name: .UITextViewTextDidChange,
+                object: self
+            )
         }
     }
 
-    @objc private func validateTextField() {
+    @objc private func validateTextView() {
 
         guard let rules = ValidatorCache.rules[hashValue] else {
             return
