@@ -26,4 +26,6 @@ public enum ValidationError: Error {
     case numberNotFound
     case lowerCaseNotFound
     case upperCaseNotFound
+    case invalidPaymentCardNumber
+    case paymentCardNotSupported
 }

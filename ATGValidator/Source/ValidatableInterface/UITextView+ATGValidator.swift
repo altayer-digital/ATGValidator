@@ -45,7 +45,7 @@ extension UITextView: ValidatableInterface {
 
         var result = satisfyAll(rules: rules)
         if result.status == .success {
-            validValue = inputValue
+            validValue = result.value
         } else if let value = validValue {
             result.value = value
         }

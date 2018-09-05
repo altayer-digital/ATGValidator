@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		961F547E213F9FC600665150 /* StringValueMatchRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F547D213F9FC600665150 /* StringValueMatchRule.swift */; };
+		961F5480213FB35700665150 /* PaymentCardRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F547F213FB35700665150 /* PaymentCardRule.swift */; };
+		961F548221400F6900665150 /* PaymentCardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F548121400F6900665150 /* PaymentCardType.swift */; };
 		9625E936213D2813003FB353 /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625E935213D2813003FB353 /* FormValidator.swift */; };
 		964F78112136B750004A6017 /* ATGValidator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F78072136B750004A6017 /* ATGValidator.framework */; };
 		964F78162136B750004A6017 /* ATGValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964F78152136B750004A6017 /* ATGValidatorTests.swift */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		961F547D213F9FC600665150 /* StringValueMatchRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValueMatchRule.swift; sourceTree = "<group>"; };
+		961F547F213FB35700665150 /* PaymentCardRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardRule.swift; sourceTree = "<group>"; };
+		961F548121400F6900665150 /* PaymentCardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardType.swift; sourceTree = "<group>"; };
 		9625E935213D2813003FB353 /* FormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
 		964F78072136B750004A6017 /* ATGValidator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ATGValidator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964F780A2136B750004A6017 /* ATGValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATGValidator.h; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				96554D2F213808A40089FF5C /* StringLengthRule.swift */,
 				9652449C213EC2F900EE298B /* StringRegexRule.swift */,
 				961F547D213F9FC600665150 /* StringValueMatchRule.swift */,
+				961F547F213FB35700665150 /* PaymentCardRule.swift */,
+				961F548121400F6900665150 /* PaymentCardType.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -304,10 +310,12 @@
 				96554D34213824C90089FF5C /* ValidatorCache.swift in Sources */,
 				96554D1E213807FD0089FF5C /* Validatable.swift in Sources */,
 				96554D19213807BB0089FF5C /* Result.swift in Sources */,
+				961F548221400F6900665150 /* PaymentCardType.swift in Sources */,
 				96554D1A213807BB0089FF5C /* Rule.swift in Sources */,
 				96554D382138257A0089FF5C /* UITextField+ATGValidator.swift in Sources */,
 				9652449D213EC2F900EE298B /* StringRegexRule.swift in Sources */,
 				96524494213EAFFD00EE298B /* EqualityRule.swift in Sources */,
+				961F5480213FB35700665150 /* PaymentCardRule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
