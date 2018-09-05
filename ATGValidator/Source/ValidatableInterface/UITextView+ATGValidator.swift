@@ -20,15 +20,15 @@ extension UITextView: ValidatableInterface {
     }
 
     public func validateOnInputChange(_ validate: Bool) {
-        switch validate {
-        case true:
+
+        if validate {
             NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(validateTextView),
                 name: .UITextViewTextDidChange,
                 object: self
             )
-        case false:
+        } else {
             NotificationCenter.default.removeObserver(
                 self,
                 name: .UITextViewTextDidChange,

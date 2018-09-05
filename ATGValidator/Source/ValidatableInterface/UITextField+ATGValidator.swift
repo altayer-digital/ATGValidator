@@ -20,10 +20,10 @@ extension UITextField: ValidatableInterface {
     }
 
     public func validateOnInputChange(_ validate: Bool) {
-        switch validate {
-        case true:
+
+        if validate {
             addTarget(self, action: #selector(validateTextField), for: .editingChanged)
-        case false:
+        } else {
             removeTarget(self, action: #selector(validateTextField), for: .editingChanged)
         }
     }
