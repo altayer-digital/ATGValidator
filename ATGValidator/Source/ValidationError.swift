@@ -28,4 +28,6 @@ public enum ValidationError: Error {
     case upperCaseNotFound
     case invalidPaymentCardNumber
     case paymentCardNotSupported
+    case characterSetError
+    case occurrencesNotInRange
 }

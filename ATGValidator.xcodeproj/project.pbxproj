@@ -26,6 +26,7 @@
 		96554D34213824C90089FF5C /* ValidatorCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D33213824C90089FF5C /* ValidatorCache.swift */; };
 		96554D36213825370089FF5C /* ValidatableInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D35213825370089FF5C /* ValidatableInterface.swift */; };
 		96554D382138257A0089FF5C /* UITextField+ATGValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96554D372138257A0089FF5C /* UITextField+ATGValidator.swift */; };
+		9658BA18214107B600DADE29 /* CharacterSetRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9658BA17214107B600DADE29 /* CharacterSetRule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		96554D33213824C90089FF5C /* ValidatorCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorCache.swift; sourceTree = "<group>"; };
 		96554D35213825370089FF5C /* ValidatableInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableInterface.swift; sourceTree = "<group>"; };
 		96554D372138257A0089FF5C /* UITextField+ATGValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ATGValidator.swift"; sourceTree = "<group>"; };
+		9658BA17214107B600DADE29 /* CharacterSetRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSetRule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			children = (
 				96554D2F213808A40089FF5C /* StringLengthRule.swift */,
 				9652449C213EC2F900EE298B /* StringRegexRule.swift */,
+				9658BA17214107B600DADE29 /* CharacterSetRule.swift */,
 				961F547D213F9FC600665150 /* StringValueMatchRule.swift */,
 				961F547F213FB35700665150 /* PaymentCardRule.swift */,
 				961F548121400F6900665150 /* PaymentCardType.swift */,
@@ -301,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9652449B213EB7B800EE298B /* RangeRule.swift in Sources */,
+				9658BA18214107B600DADE29 /* CharacterSetRule.swift in Sources */,
 				9625E936213D2813003FB353 /* FormValidator.swift in Sources */,
 				961F547E213F9FC600665150 /* StringValueMatchRule.swift in Sources */,
 				96554D30213808A40089FF5C /* StringLengthRule.swift in Sources */,
