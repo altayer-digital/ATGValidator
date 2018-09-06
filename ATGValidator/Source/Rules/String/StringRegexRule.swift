@@ -48,6 +48,9 @@ extension StringRegexRule {
         static let containsNumber = ".*\\d.*"
         static let containsUpperCase = "^.*?[A-Z].*?$"
         static let containsLowerCase = "^.*?[a-z].*?$"
+        static let numbersOnly = "^[0-9]*$"
+        static let lowerCaseOnly = "^[a-z]*$"
+        static let upperCaseOnly = "^[A-Z]*$"
     }
 
     public static let email = StringRegexRule(
@@ -68,5 +71,20 @@ extension StringRegexRule {
     public static let containsLowerCase = StringRegexRule(
         regex: Constants.containsLowerCase,
         error: ValidationError.lowerCaseNotFound
+    )
+
+    public static let numbersOnly = StringRegexRule(
+        regex: Constants.numbersOnly,
+        error: ValidationError.invalidType
+    )
+
+    public static let lowerCaseOnly = StringRegexRule(
+        regex: Constants.lowerCaseOnly,
+        error: ValidationError.invalidType
+    )
+
+    public static let upperCaseOnly = StringRegexRule(
+        regex: Constants.upperCaseOnly,
+        error: ValidationError.invalidType
     )
 }
