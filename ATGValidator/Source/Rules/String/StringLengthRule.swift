@@ -18,18 +18,21 @@ public struct StringLengthRule: Rule {
     private let min: Int
     private let max: Int
     private let trimWhiteSpace: Bool
+    private let ignoreCharacterSet: CharacterSet?
     public var error: Error
 
     public init(
         min: Int = 0,
         max: Int = Int.max,
         trimWhiteSpace: Bool = true,
+        ignoreCharactersIn characterSet: CharacterSet? = nil,
         error: Error = ValidationError.lengthOutOfRange
         ) {
 
         self.min = min
         self.max = max
         self.trimWhiteSpace = trimWhiteSpace
+        self.ignoreCharacterSet = characterSet
         self.error = error
     }
 
@@ -58,8 +61,12 @@ public struct StringLengthRule: Rule {
 
         var valueToBeValidated = inputValue
 
+        if let characterSet = ignoreCharacterSet {
+            let passed = valueToBeValidated.unicodeScalars.filter { !characterSet.contains($0) }
+            valueToBeValidated = String(String.UnicodeScalarView(passed))
+        }
         if trimWhiteSpace {
-            valueToBeValidated = valueToBeValidated.trimmingCharacters(in: CharacterSet.whitespaces)
+            valueToBeValidated = valueToBeValidated.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
 
         let isValid = valueToBeValidated.count >= min && valueToBeValidated.count <= max
