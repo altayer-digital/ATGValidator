@@ -45,9 +45,9 @@ extension StringRegexRule {
     private enum Constants {
 
         static let email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        static let containsNumber = ".*\\d.*"
-        static let containsUpperCase = "^.*?[A-Z].*?$"
-        static let containsLowerCase = "^.*?[a-z].*?$"
+        static let containsNumber = "(\\D*\\d\\D*){%d,%d}"
+        static let containsUpperCase = "([^A-Z]*[A-Z][^A-Z]*){%d,%d}"
+        static let containsLowerCase = "([^a-z]*[a-z][^a-z]*){%d,%d}"
         static let numbersOnly = "^[0-9]*$"
         static let lowerCaseOnly = "^[a-z]*$"
         static let upperCaseOnly = "^[A-Z]*$"
@@ -58,20 +58,29 @@ extension StringRegexRule {
         error: ValidationError.invalidEmail
     )
 
-    public static let containsNumber = StringRegexRule(
-        regex: Constants.containsNumber,
-        error: ValidationError.numberNotFound
-    )
+    public static func containsNumber(min: UInt8 = 1, max: UInt8 = UInt8.max) -> StringRegexRule {
 
-    public static let containsUpperCase = StringRegexRule(
-        regex: Constants.containsUpperCase,
-        error: ValidationError.upperCaseNotFound
-    )
+        assert(min <= max, "min should be less than or equal to max")
 
-    public static let containsLowerCase = StringRegexRule(
-        regex: Constants.containsLowerCase,
-        error: ValidationError.lowerCaseNotFound
-    )
+        let regex = String(format: Constants.containsNumber, min, max)
+        return StringRegexRule(regex: regex, error: ValidationError.numberNotFound)
+    }
+
+    public static func containsUpperCase(min: UInt8 = 1, max: UInt8 = UInt8.max) -> StringRegexRule {
+
+        assert(min <= max, "min should be less than or equal to max")
+
+        let regex = String(format: Constants.containsUpperCase, min, max)
+        return StringRegexRule(regex: regex, error: ValidationError.upperCaseNotFound)
+    }
+
+    public static func containsLowerCase(min: UInt8 = 1, max: UInt8 = UInt8.max) -> StringRegexRule {
+
+        assert(min <= max, "min should be less than or equal to max")
+
+        let regex = String(format: Constants.containsLowerCase, min, max)
+        return StringRegexRule(regex: regex, error: ValidationError.lowerCaseNotFound)
+    }
 
     public static let numbersOnly = StringRegexRule(
         regex: Constants.numbersOnly,
