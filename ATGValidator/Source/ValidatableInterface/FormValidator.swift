@@ -11,14 +11,19 @@
 //  Any reproduction of this material must contain this notice.
 //
 
-// TODO: Add documentation
-
+/// Form validator to handle validation of collection of UI elements.
 public class FormValidator {
 
     private var elements: [ValidatableInterface] = []
     private var status: [Int: Result] = [:]
 
+    /// Validation handler closure to be executed on validation status change.
     public var handler: ValidationHandler?
+    /**
+     Initializer
+
+     - parameter handler: Validation handler object to be called on validation status change.
+     */
     public init(handler: ValidationHandler? = nil) {
 
         self.handler = handler
@@ -27,6 +32,12 @@ public class FormValidator {
 
 extension FormValidator {
 
+    /**
+     Method to add UI components to the form validator.
+
+     - parameter element: Value conforming to `ValidatableInterface` protocol. An additional
+     requirement is that the element should be conforming to `Equatable` and `Hashable` protocols.
+     */
     public func add<V: ValidatableInterface>(_ element: V) where V: Equatable & Hashable {
 
         if !elements.contains(where: { ($0 as? V) == element}) {
@@ -45,12 +56,22 @@ extension FormValidator {
         }
     }
 
+    /**
+     Method to remove UI components from form validator.
+
+     - parameter element: Value conforming to `ValidatableInterface` protocol. An additional
+     requirement is that the element should be conforming to `Equatable` and `Hashable` protocols.
+     */
     public func remove<V: ValidatableInterface>(_ element: V) where V: Equatable & Hashable {
 
         elements = elements.filter({ ($0 as? V) != element })
         element.formHandler = nil
     }
 
+    /**
+     Method to manually trigger form validation. The handler will be executed with the validation
+     result on calling this method.
+     */
     public func validateForm() {
 
         var formResult = Result.succeed(self)

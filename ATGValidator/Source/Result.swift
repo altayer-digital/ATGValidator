@@ -11,25 +11,43 @@
 //  Any reproduction of this material must contain this notice.
 //
 
-// TODO: Add documentation
-
+/// Result structure to hold validation status, errors and value.
 public struct Result {
 
+    /// Status enumeration for validation result
     public enum Status {
 
+        /// Validation is successful.
         case success
+        /// Validation is failed.
         case failure
     }
 
+    /// Status of the validation.
     public var status: Status
+    /// List of errors corresponding to failed validation rules.
     public var errors: [Error]?
+    /// Last valid value/input value.
     public var value: Any
 
+    /**
+     Helper factory builder for failure result.
+
+     - parameter value: Value to be stored in the result object.
+     - parameter value: List of errors to be associated with result.
+     - returns: A result object
+     */
     internal static func fail(_ value: Any, withErrors errors: [Error]? = nil) -> Result {
 
         return Result(status: .failure, errors: errors, value: value)
     }
 
+    /**
+     Helper factory builder for success result.
+
+     - parameter value: Value to be stored in the result object.
+     - returns: A result object
+     */
     internal static func succeed(_ value: Any) -> Result {
 
         return Result(status: .success, errors: nil, value: value)
@@ -38,6 +56,13 @@ public struct Result {
 
 extension Result {
 
+    /**
+     Method to combine result of the passed in rule with caller in a `logical AND` manner.
+
+     - parameter rule: Result of the rule which needs to be merged.
+     - returns: New merged result object.
+     - note: The result is a failure if either the caller or the rule's result is failure.
+     */
     internal func and(_ rule: Rule) -> Result {
 
         var result = self
@@ -55,6 +80,13 @@ extension Result {
         }
     }
 
+    /**
+     Method to combine result of the passed in rule with caller in a `logical OR` manner.
+
+     - parameter rule: Result of the rule which needs to be merged.
+     - returns: New merged result object.
+     - note: The result is success if either the caller or the rule's result is success.
+     */
     internal func or(_ rule: Rule) -> Result {
 
         var result = self
@@ -73,6 +105,14 @@ extension Result {
         }
     }
 
+    /**
+     Method to merge the passed in result to the caller.
+
+     - parameter other: Other result which needs to be merged.
+     - returns: New merged result object.
+     - note: The operation merges both the results and sends a unified result object with all errors
+     in it.
+     */
     internal func merge(_ other: Result) -> Result {
 
         switch (status, other.status) {

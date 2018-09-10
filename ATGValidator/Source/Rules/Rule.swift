@@ -11,11 +11,25 @@
 //  Any reproduction of this material must contain this notice.
 //
 
-// TODO: Add documentation
+/**
+ Base protocol to be conformed while creating a new validation rule.
 
+ - note:
+ There are 2 requirements in this protocol
+ - error: This is the error, which will be returned if the rule is failed on the input.
+ - validate(value:): This method should do the actual validation and return a result with status
+ as either success or failure. In case of failure, the result's errors property needs to be filled
+ with the corresponding error object.
+ */
 public protocol Rule {
 
+    /// Error object associated with the specific rule.
     var error: Error { get set }
 
+    /**
+     Validation implementation method.
+     - parameter value: The value to be passed in for validation.
+     - returns: A result object with success or failure with errors.
+     */
     func validate(value: Any) -> Result
 }

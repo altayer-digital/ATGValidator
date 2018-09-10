@@ -11,10 +11,18 @@
 //  Any reproduction of this material must contain this notice.
 //
 
-// TODO: Add documentation
-
+/**
+ Validation handler closure.
+ - parameter result: The result of the validation action.
+ - note: The validation handler is called by `ValidatableInterface` or `FormValidator` on changes in
+ the validation state of specific fields.
+ */
 public typealias ValidationHandler = ((Result) -> Void)
 
+/**
+ Cache used to maintain mapping between rules, validation handlers, valid values and form handlers
+ with their corresponding UI elements. This is an in-memory cache and will be cleared on app kill.
+ */
 internal struct ValidatorCache {
 
     private init() { }

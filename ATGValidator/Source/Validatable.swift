@@ -11,11 +11,25 @@
 //  Any reproduction of this material must contain this notice.
 //
 
-// TODO: Add documentation
+/// Validatable protocol. To be conformed by classes that needs to be validated.
 public protocol Validatable {
 
+    /// Return the value to be validated in this variable.
     var inputValue: Any { get }
+    /**
+     Method to validate all rules. Result is success if all the rules in array succeed.
+
+     - parameter rules: Array of rules to be validated.
+     - returns: Result object of the validation.
+     */
     func satisfyAll(rules: [Rule]) -> Result
+    /**
+     Method to validate atleast one of the rules.  Result is success if any of the rules in array
+     succeed.
+
+     - parameter rules: Array of rules to be validated.
+     - returns: Result of the validation.
+     */
     func satisfyAny(rules: [Rule]) -> Result
 }
 

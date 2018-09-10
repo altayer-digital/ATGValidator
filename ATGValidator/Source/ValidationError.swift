@@ -11,8 +11,7 @@
 //  Any reproduction of this material must contain this notice.
 //
 
-// TODO: Add documentation
-
+/// Default validation error group used.
 public enum ValidationError: Error {
 
     case invalidType

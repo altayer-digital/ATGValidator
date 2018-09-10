@@ -11,22 +11,36 @@
 //  Any reproduction of this material must contain this notice.
 //
 
-// TODO: Add documentation
+/**
+ ValidatableInterface protocol.
 
+ - note: The UI elements (eg: UITextField) should conform to this protocol to get the validation
+ support.
+ */
 public protocol ValidatableInterface: class, Validatable {
 
+    /**
+     Method to add/remove event listeners for validation
+
+     - parameter validate: Enable/Disable automatic validation.
+     - note: The conforming classes must implement this method, add/remove event listeners for
+     input change, and handle validation on the specific input events.
+     */
     func validateOnInputChange(_ validate: Bool)
 }
 
 extension ValidatableInterface {
 
+    /// Conforming classes needs to return the value to be validated from this getter.
     public var inputValue: Any {
+
         fatalError("Over ride this getter to return the value to be validated.!")
     }
 }
 
 extension ValidatableInterface where Self: Hashable {
 
+    /// Variable to maintain last valid value.
     internal var validValue: Any? {
         get {
             return ValidatorCache.validValues[self.hashValue]
@@ -36,6 +50,7 @@ extension ValidatableInterface where Self: Hashable {
         }
     }
 
+    /// Validation rules set on the interface.
     public var validationRules: [Rule]? {
         get {
             return ValidatorCache.rules[self.hashValue]
@@ -45,6 +60,10 @@ extension ValidatableInterface where Self: Hashable {
         }
     }
 
+    /**
+     Validation handler to be executed on changes in validation state. This will be called only if
+     the `validateOnInputChange` is called with true.
+     */
     public var validationHandler: ValidationHandler? {
         get {
             return ValidatorCache.validationHandlers[self.hashValue]
@@ -54,6 +73,10 @@ extension ValidatableInterface where Self: Hashable {
         }
     }
 
+    /**
+     Validation handler to be executed on changes in validation state. This will be called only if
+     the interface element is added to a form validator.
+     */
     internal var formHandler: ValidationHandler? {
         get {
             return ValidatorCache.formHandlers[self.hashValue]
@@ -63,6 +86,7 @@ extension ValidatableInterface where Self: Hashable {
         }
     }
 
+    /// Method to clean up all validation related structs and closures.
     public func cleanUpFromValidatorCache() {
 
         validValue = nil
