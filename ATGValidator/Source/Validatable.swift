@@ -50,7 +50,7 @@ extension Validatable {
 
     public func satisfyAny(rules: [Rule]) -> Result {
 
-        var result = Result.fail(inputValue)
+        var result = Result.fail(inputValue, withErrors: [])
 
         rules.forEach({ result = result.or($0) })
 
