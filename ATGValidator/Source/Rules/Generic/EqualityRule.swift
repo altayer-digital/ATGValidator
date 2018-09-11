@@ -11,18 +11,32 @@
 //  Any reproduction of this material must contain this notice.
 //
 
-// TODO: Add docuementation
-
+/// Equality rule. Value to be checked for this rule must be conforming to `Equatable`.
 public struct EqualityRule<T: Equatable>: Rule {
 
     let test: T
+    /// Error to be returned if validation fails.
     public var error: Error
+    /**
+     Initialiser.
+
+     - parameter value: The value to be compared against.
+     - parameter error: Error to be returned in case of validation failure.
+     */
     public init(value: T, error: Error = ValidationError.notEqual) {
 
         self.test = value
         self.error = error
     }
 
+    /**
+     Validation implementation method.
+
+     - parameter value: The value to be passed in for validation.
+     - returns: A result object with success or failure with errors.
+
+     - note: Checks if the passed in `value` is equal to the `test` value.
+     */
     public func validate(value: Any) -> Result {
 
         guard let valueToTest = value as? T else {

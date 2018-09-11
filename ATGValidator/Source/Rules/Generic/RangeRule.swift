@@ -11,14 +11,21 @@
 //  Any reproduction of this material must contain this notice.
 //
 
-// TODO: Add docuementation
-
+/// Range rule. Values that define limit must conform to `Comparable` protocol.
 public struct RangeRule<T: Comparable>: Rule {
 
     private let min: T
     private let max: T
+    /// Error to be returned if validation fails.
     public var error: Error
 
+    /**
+     Initialiser.
+
+     - parameter min: Lower range limit.
+     - parameter max: Upper range limit.
+     - parameter error: Error to be returned in case of validation failure.
+     */
     public init(min: T, max: T, error: Error = ValidationError.valueOutOfRange) {
 
         self.min = min
@@ -26,6 +33,14 @@ public struct RangeRule<T: Comparable>: Rule {
         self.error = error
     }
 
+    /**
+     Validation implementation method.
+
+     - parameter value: The value to be passed in for validation.
+     - returns: A result object with success or failure with errors.
+
+     - note: Checks if the passed in `value` is between `min` and `max` both values including.
+     */
     public func validate(value: Any) -> Result {
 
         guard let valueToTest = value as? T else {

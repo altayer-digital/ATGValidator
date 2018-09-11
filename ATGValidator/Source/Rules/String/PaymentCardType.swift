@@ -11,11 +11,14 @@
 //  Any reproduction of this material must contain this notice.
 //
 
+/// Payment card type enum for credit/debit cards
 public enum PaymentCardType: String {
 
     internal enum Constants {
 
+        /// Minimum length of card number required before doing number validation.
         static let minimumLengthForValidation = 12
+        /// Minimum length of card number required before performing suggestion.
         static let minimumLengthForSuggestion = 4
     }
 
@@ -27,6 +30,7 @@ public enum PaymentCardType: String {
     case discover = "Discover"
     case dinersClub = "Diners Club"
 
+    /// Helper to return all supported card types.
     public static var all: [PaymentCardType] = [
         .amex,
         .mastercard,
@@ -37,6 +41,12 @@ public enum PaymentCardType: String {
         .dinersClub
     ]
 
+    /**
+     Initializer.
+
+     - parameter cardNumber: Credit/Debit card number with which card type should be attempted to
+     be made.
+     */
     public init?(cardNumber: String) {
 
         guard let type = PaymentCardType.typeForCardNumber(cardNumber) else {
@@ -46,6 +56,16 @@ public enum PaymentCardType: String {
         self.init(rawValue: type.rawValue)
     }
 
+    /**
+     Method to get suggested type for a card number.
+
+     - parameter cardNumber: The card number for which suggestion has to be made.
+     - returns: The suggestion for card type if any, else nil.
+
+     - note: All card numbers need minimum 4 digits for a suggestion, and for some specific card
+     numbers (Eg: MasterCard that starts with 677189 or Visa Electron that starts with 417500),
+     minimum 6 digits are needed for a correct suggestion.
+     */
     public static func suggestedTypeForCardNumber(_ cardNumber: String?) -> PaymentCardType? {
 
         guard let cn = cardNumber,
@@ -57,7 +77,7 @@ public enum PaymentCardType: String {
         }
     }
 
-    // This is used for full validation of the card number.
+    /// This method actually validates the card number.
     private static func typeForCardNumber(_ cardNumber: String?) -> PaymentCardType? {
 
         guard let cn = cardNumber else {

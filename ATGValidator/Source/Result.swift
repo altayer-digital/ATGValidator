@@ -35,6 +35,7 @@ public struct Result {
 
      - parameter value: Value to be stored in the result object.
      - parameter value: List of errors to be associated with result.
+
      - returns: A result object
      */
     internal static func fail(_ value: Any, withErrors errors: [Error]? = nil) -> Result {
@@ -46,6 +47,7 @@ public struct Result {
      Helper factory builder for success result.
 
      - parameter value: Value to be stored in the result object.
+
      - returns: A result object
      */
     internal static func succeed(_ value: Any) -> Result {
@@ -61,6 +63,7 @@ extension Result {
 
      - parameter rule: Result of the rule which needs to be merged.
      - returns: New merged result object.
+
      - note: The result is a failure if either the caller or the rule's result is failure.
      */
     internal func and(_ rule: Rule) -> Result {
@@ -85,7 +88,10 @@ extension Result {
 
      - parameter rule: Result of the rule which needs to be merged.
      - returns: New merged result object.
+
      - note: The result is success if either the caller or the rule's result is success.
+     This function returns once the first success case is met. All the errors accumulated upto that
+     point will be available in the errors array.
      */
     internal func or(_ rule: Rule) -> Result {
 
@@ -110,6 +116,7 @@ extension Result {
 
      - parameter other: Other result which needs to be merged.
      - returns: New merged result object.
+
      - note: The operation merges both the results and sends a unified result object with all errors
      in it.
      */

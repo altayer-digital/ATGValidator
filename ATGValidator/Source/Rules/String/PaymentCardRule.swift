@@ -11,11 +11,20 @@
 //  Any reproduction of this material must contain this notice.
 //
 
+/// Rule to validate credit/debit cards.
 public struct PaymentCardRule: Rule {
 
     private let acceptedTypes: [PaymentCardType]
+    /// Error to be returned if validation fails.
     public var error: Error
 
+    /**
+     Initialiser.
+
+     - parameter acceptedTypes: List of card types that are accepted for this rule.
+     - parameter error: Error to be returned in case of validation failure.
+     Default is `paymentCardNotSupported`
+     */
     public init(
         acceptedTypes: [PaymentCardType],
         error: Error = ValidationError.paymentCardNotSupported
@@ -25,10 +34,35 @@ public struct PaymentCardRule: Rule {
         self.error = error
     }
 
+    /**
+     Initialiser.
+
+     All cards defined in the `PaymentCardType` enum will be supported in the rule if this `init` is
+     used for initialization.
+
+     - parameter error: Error to be returned in case of validation failure.
+     Default is `paymentCardNotSupported`
+     */
     public init(error: Error = ValidationError.paymentCardNotSupported) {
 
         self.init(acceptedTypes: PaymentCardType.all, error: error)
     }
+
+    /**
+     Validation implementation method.
+
+     - parameter value: The value to be passed in for validation.
+     - returns: A result object with success or failure with errors.
+
+     - note: Checks if the passed in `value` is a valid supported card number.
+
+     This method also tries to estimate the card type if the passed in value has atleast 4 valid
+     digits. This estimated card type is passed as the value of result in case `luhnCheck` fails or
+     if the card number is not long enough for a valid card type.
+
+     If the validation succeeds, the detected card type will be passed as the value of the result
+     object.
+     */
 
     public func validate(value: Any) -> Result {
 
