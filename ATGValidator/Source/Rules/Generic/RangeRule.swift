@@ -15,8 +15,8 @@
 
 public struct RangeRule<T: Comparable>: Rule {
 
-    let min: T
-    let max: T
+    private let min: T
+    private let max: T
     public var error: Error
 
     public init(min: T, max: T, error: Error = ValidationError.valueOutOfRange) {

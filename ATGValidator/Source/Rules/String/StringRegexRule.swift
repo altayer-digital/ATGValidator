@@ -58,28 +58,40 @@ extension StringRegexRule {
         error: ValidationError.invalidEmail
     )
 
-    public static func containsNumber(min: UInt8 = 1, max: UInt8 = UInt8.max) -> StringRegexRule {
+    public static func containsNumber(
+        min: UInt8 = 1,
+        max: UInt8 = UInt8.max,
+        error: Error = ValidationError.numberNotFound
+        ) -> StringRegexRule {
 
         assert(min <= max, "min should be less than or equal to max")
 
         let regex = String(format: Constants.containsNumber, min, max)
-        return StringRegexRule(regex: regex, error: ValidationError.numberNotFound)
+        return StringRegexRule(regex: regex, error: error)
     }
 
-    public static func containsUpperCase(min: UInt8 = 1, max: UInt8 = UInt8.max) -> StringRegexRule {
+    public static func containsUpperCase(
+        min: UInt8 = 1,
+        max: UInt8 = UInt8.max,
+        error: Error = ValidationError.upperCaseNotFound
+        ) -> StringRegexRule {
 
         assert(min <= max, "min should be less than or equal to max")
 
         let regex = String(format: Constants.containsUpperCase, min, max)
-        return StringRegexRule(regex: regex, error: ValidationError.upperCaseNotFound)
+        return StringRegexRule(regex: regex, error: error)
     }
 
-    public static func containsLowerCase(min: UInt8 = 1, max: UInt8 = UInt8.max) -> StringRegexRule {
+    public static func containsLowerCase(
+        min: UInt8 = 1,
+        max: UInt8 = UInt8.max,
+        error: Error = ValidationError.lowerCaseNotFound
+        ) -> StringRegexRule {
 
         assert(min <= max, "min should be less than or equal to max")
 
         let regex = String(format: Constants.containsLowerCase, min, max)
-        return StringRegexRule(regex: regex, error: ValidationError.lowerCaseNotFound)
+        return StringRegexRule(regex: regex, error: error)
     }
 
     public static let numbersOnly = StringRegexRule(

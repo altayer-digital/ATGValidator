@@ -72,39 +72,55 @@ public struct CharacterSetRule: Rule {
 
 extension CharacterSetRule {
 
-    public static func containsNumber(minimum: Int = 1, maximum: Int = Int.max) -> CharacterSetRule {
+    public static func containsNumber(
+        minimum: Int = 1,
+        maximum: Int = Int.max,
+        error: Error = ValidationError.occurrencesNotInRange
+        ) -> CharacterSetRule {
 
         return CharacterSetRule(
             characterSet: .decimalDigits,
             mode: .contains(min: minimum, max: maximum),
-            error: ValidationError.occurrencesNotInRange
+            error: error
         )
     }
 
-    public static func containsUpperCase(minimum: Int = 1, maximum: Int = Int.max) -> CharacterSetRule {
+    public static func containsUpperCase(
+        minimum: Int = 1,
+        maximum: Int = Int.max,
+        error: Error = ValidationError.occurrencesNotInRange
+        ) -> CharacterSetRule {
 
         return CharacterSetRule(
             characterSet: .uppercaseLetters,
             mode: .contains(min: minimum, max: maximum),
-            error: ValidationError.occurrencesNotInRange
+            error: error
         )
     }
 
-    public static func containsLowerCase(minimum: Int = 1, maximum: Int = Int.max) -> CharacterSetRule {
+    public static func containsLowerCase(
+        minimum: Int = 1,
+        maximum: Int = Int.max,
+        error: Error = ValidationError.occurrencesNotInRange
+        ) -> CharacterSetRule {
 
         return CharacterSetRule(
             characterSet: .lowercaseLetters,
             mode: .contains(min: minimum, max: maximum),
-            error: ValidationError.occurrencesNotInRange
+            error: error
         )
     }
 
-    public static func containsSymbols(minimum: Int = 1, maximum: Int = Int.max) -> CharacterSetRule {
+    public static func containsSymbols(
+        minimum: Int = 1,
+        maximum: Int = Int.max,
+        error: Error = ValidationError.occurrencesNotInRange
+        ) -> CharacterSetRule {
 
         return CharacterSetRule(
             characterSet: .symbols,
             mode: .contains(min: minimum, max: maximum),
-            error: ValidationError.occurrencesNotInRange
+            error: error
         )
     }
 
