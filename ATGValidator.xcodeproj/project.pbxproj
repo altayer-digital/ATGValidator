@@ -12,6 +12,7 @@
 		961F5480213FB35700665150 /* PaymentCardRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F547F213FB35700665150 /* PaymentCardRule.swift */; };
 		961F548221400F6900665150 /* PaymentCardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F548121400F6900665150 /* PaymentCardType.swift */; };
 		9625E936213D2813003FB353 /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625E935213D2813003FB353 /* FormValidator.swift */; };
+		962B15992147D86E002B9E15 /* ValidatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962B15982147D86E002B9E15 /* ValidatableTests.swift */; };
 		964F78112136B750004A6017 /* ATGValidator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F78072136B750004A6017 /* ATGValidator.framework */; };
 		964F78162136B750004A6017 /* ATGValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964F78152136B750004A6017 /* ATGValidatorTests.swift */; };
 		964F78182136B750004A6017 /* ATGValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 964F780A2136B750004A6017 /* ATGValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,6 +47,7 @@
 		961F547F213FB35700665150 /* PaymentCardRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardRule.swift; sourceTree = "<group>"; };
 		961F548121400F6900665150 /* PaymentCardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardType.swift; sourceTree = "<group>"; };
 		9625E935213D2813003FB353 /* FormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
+		962B15982147D86E002B9E15 /* ValidatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableTests.swift; sourceTree = "<group>"; };
 		964F78072136B750004A6017 /* ATGValidator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ATGValidator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964F780A2136B750004A6017 /* ATGValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATGValidator.h; sourceTree = "<group>"; };
 		964F780B2136B750004A6017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				961B5F092147A9BD00067B6E /* ResultTests.swift */,
+				962B15982147D86E002B9E15 /* ValidatableTests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				962B15992147D86E002B9E15 /* ValidatableTests.swift in Sources */,
 				961B5F0A2147A9BD00067B6E /* ResultTests.swift in Sources */,
 				964F78162136B750004A6017 /* ATGValidatorTests.swift in Sources */,
 			);
