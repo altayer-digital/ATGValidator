@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		961B5F0A2147A9BD00067B6E /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B5F092147A9BD00067B6E /* ResultTests.swift */; };
 		961F547E213F9FC600665150 /* StringValueMatchRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F547D213F9FC600665150 /* StringValueMatchRule.swift */; };
 		961F5480213FB35700665150 /* PaymentCardRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F547F213FB35700665150 /* PaymentCardRule.swift */; };
 		961F548221400F6900665150 /* PaymentCardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F548121400F6900665150 /* PaymentCardType.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		961B5F092147A9BD00067B6E /* ResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
 		961F547D213F9FC600665150 /* StringValueMatchRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValueMatchRule.swift; sourceTree = "<group>"; };
 		961F547F213FB35700665150 /* PaymentCardRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardRule.swift; sourceTree = "<group>"; };
 		961F548121400F6900665150 /* PaymentCardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardType.swift; sourceTree = "<group>"; };
@@ -84,6 +86,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		961B5F072147A98F00067B6E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				961B5F092147A9BD00067B6E /* ResultTests.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		961B5F082147A98F00067B6E /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
 		964F77FD2136B750004A6017 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +132,8 @@
 		964F78142136B750004A6017 /* ATGValidatorTests */ = {
 			isa = PBXGroup;
 			children = (
+				961B5F072147A98F00067B6E /* Core */,
+				961B5F082147A98F00067B6E /* Rules */,
 				964F78152136B750004A6017 /* ATGValidatorTests.swift */,
 				964F78172136B750004A6017 /* Info.plist */,
 			);
@@ -327,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				961B5F0A2147A9BD00067B6E /* ResultTests.swift in Sources */,
 				964F78162136B750004A6017 /* ATGValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
