@@ -14,7 +14,7 @@
 /// Form validator to handle validation of collection of UI elements.
 public class FormValidator {
 
-    private var elements: [ValidatableInterface] = []
+    private var elements: [Int: ValidatableInterface] = [:]
     private var status: [Int: Result] = [:]
 
     /// Validation handler closure to be executed on validation status change.
@@ -38,16 +38,18 @@ extension FormValidator {
      - parameter element: Value conforming to `ValidatableInterface` protocol. An additional
      requirement is that the element should be conforming to `Equatable` and `Hashable` protocols.
      */
-    public func add<V: ValidatableInterface>(_ element: V) where V: Equatable & Hashable {
+    public func add<V: ValidatableInterface>(_ element: V) where V: Hashable {
 
-        if !elements.contains(where: { ($0 as? V) == element}) {
+        if !elements.keys.contains(element.hashValue) {
 
-            elements.append(element)
+            elements[element.hashValue] = element
+
+            element.validateOnInputChange(true)
 
             element.formHandler = { result in
 
                 self.status[element.hashValue] = result
-                self.validateForm()
+                self.processFormResults()
             }
 
             if let rules = ValidatorCache.rules[element.hashValue] {
@@ -62,17 +64,33 @@ extension FormValidator {
      - parameter element: Value conforming to `ValidatableInterface` protocol. An additional
      requirement is that the element should be conforming to `Equatable` and `Hashable` protocols.
      */
-    public func remove<V: ValidatableInterface>(_ element: V) where V: Equatable & Hashable {
+    public func remove<V: ValidatableInterface>(_ element: V) where V: Hashable {
 
-        elements = elements.filter({ ($0 as? V) != element })
+        elements.removeValue(forKey: element.hashValue)
+        if element.validationHandler == nil {
+            element.validateOnInputChange(false)
+        }
         element.formHandler = nil
     }
 
     /**
      Method to manually trigger form validation. The handler will be executed with the validation
      result on calling this method.
+
+     All the input fields will call `satisfyAll:` with their respective rules.
+
      */
     public func validateForm() {
+
+        for (hash, element) in elements {
+            if let rules = ValidatorCache.rules[hash] {
+                self.status[hash] = element.satisfyAll(rules: rules)
+            }
+        }
+        processFormResults()
+    }
+
+    private func processFormResults() {
 
         var formResult = Result.succeed(self)
         for item in self.status.values {
