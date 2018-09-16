@@ -52,28 +52,76 @@ public struct StringLengthRule: Rule {
      Factory method to create a rule with only minimum length requirement.
 
      - parameter min: Lower string length limit.
+     - parameter trimWhiteSpace: Whether to trim whitespace and newline from input string before
+     validation.
+     - parameter ignoreCharactersIn: Characterset of which all characters will be ignored from the
+     input string before validation.
      - parameter error: Error to be returned in case of validation failure.
      */
     public static func min(
         _ min: Int,
+        trimWhiteSpace: Bool = true,
+        ignoreCharactersIn characterSet: CharacterSet? = nil,
         error: Error = ValidationError.shorterThanMinimumLength
         ) -> StringLengthRule {
 
-        return StringLengthRule(min: min, error: error)
+        return StringLengthRule(
+            min: min,
+            trimWhiteSpace: trimWhiteSpace,
+            ignoreCharactersIn: characterSet,
+            error: error
+        )
     }
 
     /**
      Factory method to create a rule with only maximum length requirement.
 
      - parameter min: Upper string length limit.
+     - parameter trimWhiteSpace: Whether to trim whitespace and newline from input string before
+     validation.
+     - parameter ignoreCharactersIn: Characterset of which all characters will be ignored from the
+     input string before validation.
      - parameter error: Error to be returned in case of validation failure.
      */
     public static func max(
         _ max: Int,
+        trimWhiteSpace: Bool = true,
+        ignoreCharactersIn characterSet: CharacterSet? = nil,
         error: Error = ValidationError.longerThanMaximumLength
         ) -> StringLengthRule {
 
-        return StringLengthRule(max: max, error: error)
+        return StringLengthRule(
+            max: max,
+            trimWhiteSpace: trimWhiteSpace,
+            ignoreCharactersIn: characterSet,
+            error: error
+        )
+    }
+
+    /**
+     Factory method to create a rule with equal to length requirement.
+
+     - parameter length: Length required.
+     - parameter trimWhiteSpace: Whether to trim whitespace and newline from input string before
+     validation.
+     - parameter ignoreCharactersIn: Characterset of which all characters will be ignored from the
+     input string before validation.
+     - parameter error: Error to be returned in case of validation failure.
+     */
+    public static func equal(
+        to length: Int,
+        trimWhiteSpace: Bool = true,
+        ignoreCharactersIn characterSet: CharacterSet? = nil,
+        error: Error = ValidationError.notEqual
+        ) -> StringLengthRule {
+
+        return StringLengthRule(
+            min: length,
+            max: length,
+            trimWhiteSpace: trimWhiteSpace,
+            ignoreCharactersIn: characterSet,
+            error: error
+        )
     }
 
     /**
@@ -98,7 +146,9 @@ public struct StringLengthRule: Rule {
             valueToBeValidated = String(String.UnicodeScalarView(passed))
         }
         if trimWhiteSpace {
-            valueToBeValidated = valueToBeValidated.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            valueToBeValidated = valueToBeValidated.trimmingCharacters(
+                in: CharacterSet.whitespacesAndNewlines
+            )
         }
 
         let isValid = valueToBeValidated.count >= min && valueToBeValidated.count <= max
