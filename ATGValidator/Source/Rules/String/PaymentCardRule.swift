@@ -21,31 +21,18 @@ public struct PaymentCardRule: Rule {
     /**
      Initialiser.
 
-     - parameter acceptedTypes: List of card types that are accepted for this rule.
+     - parameter acceptedTypes: List of card types that are accepted for this rule. Default is all
+     cards mentioned in `PaymentCardType` enum.
      - parameter error: Error to be returned in case of validation failure.
      Default is `paymentCardNotSupported`
      */
     public init(
-        acceptedTypes: [PaymentCardType],
+        acceptedTypes: [PaymentCardType] = PaymentCardType.all,
         error: Error = ValidationError.paymentCardNotSupported
         ) {
 
         self.acceptedTypes = acceptedTypes
         self.error = error
-    }
-
-    /**
-     Initialiser.
-
-     All cards defined in the `PaymentCardType` enum will be supported in the rule if this `init` is
-     used for initialization.
-
-     - parameter error: Error to be returned in case of validation failure.
-     Default is `paymentCardNotSupported`
-     */
-    public init(error: Error = ValidationError.paymentCardNotSupported) {
-
-        self.init(acceptedTypes: PaymentCardType.all, error: error)
     }
 
     /**
