@@ -52,7 +52,7 @@ extension FormValidator {
                 self.processFormResults()
             }
 
-            if let rules = ValidatorCache.rules[element.hashValue] {
+            if let rules = element.validationRules {
                 self.status[element.hashValue] = element.satisfyAll(rules: rules)
             }
         }

@@ -41,7 +41,7 @@ extension ValidatableInterface {
 extension ValidatableInterface where Self: Hashable {
 
     /// Variable to maintain last valid value.
-    internal var validValue: Any? {
+    public var validValue: Any? {
         get {
             return ValidatorCache.validValues[self.hashValue]
         }
@@ -77,7 +77,7 @@ extension ValidatableInterface where Self: Hashable {
      Validation handler to be executed on changes in validation state. This will be called only if
      the interface element is added to a form validator.
      */
-    internal var formHandler: ValidationHandler? {
+    public var formHandler: ValidationHandler? {
         get {
             return ValidatorCache.formHandlers[self.hashValue]
         }

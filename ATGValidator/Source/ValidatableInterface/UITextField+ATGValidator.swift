@@ -64,7 +64,7 @@ extension UITextField: ValidatableInterface {
      */
     @objc private func validateTextField() {
 
-        guard let rules = ValidatorCache.rules[hashValue] else {
+        guard let rules = validationRules else {
             return
         }
 
