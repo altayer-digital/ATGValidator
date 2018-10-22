@@ -15,6 +15,7 @@
 public struct StringRegexRule: Rule {
 
     private let regex: String
+    private let trimWhiteSpace: Bool
     /// Error to be returned if validation fails.
     public var error: Error
 
@@ -22,14 +23,18 @@ public struct StringRegexRule: Rule {
      Initialiser.
 
      - parameter regex: Regular expression string to be matched against.
+     - parameter trimWhiteSpace: Whether to trim whitespace and newline from input string before
+     validation.
      - parameter error: Error to be returned in case of validation failure.
      */
     public init(
         regex: String,
+        trimWhiteSpace: Bool = true,
         error: Error = ValidationError.regexMismatch
         ) {
 
         self.regex = regex
+        self.trimWhiteSpace = trimWhiteSpace
         self.error = error
     }
 
@@ -48,9 +53,17 @@ public struct StringRegexRule: Rule {
             return Result.fail(value, withErrors: [ValidationError.invalidType])
         }
 
-        let isValid = NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: inputValue)
+        var valueToBeValidated = inputValue
 
-        return isValid ? Result.succeed(inputValue) : Result.fail(inputValue, withErrors: [error])
+        if trimWhiteSpace {
+            valueToBeValidated = valueToBeValidated.trimmingCharacters(
+                in: CharacterSet.whitespacesAndNewlines
+            )
+        }
+
+        let isValid = NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: valueToBeValidated)
+
+        return isValid ? Result.succeed(valueToBeValidated) : Result.fail(valueToBeValidated, withErrors: [error])
     }
 }
 
@@ -139,21 +152,24 @@ extension StringRegexRule {
         return StringRegexRule(regex: regex, error: error)
     }
 
-    /// Factory instance to create rule which checks for strings with numbers only.
+    /// Factory instance to create rule which checks for strings with numbers only. Does not trim whitespace.
     public static let numbersOnly = StringRegexRule(
         regex: Constants.numbersOnly,
+        trimWhiteSpace: false,
         error: ValidationError.invalidType
     )
 
-    /// Factory instance to create rule which checks for strings with lower case chars only.
+    /// Factory instance to create rule which checks for strings with lower case chars only. Does not trim whitespace.
     public static let lowerCaseOnly = StringRegexRule(
         regex: Constants.lowerCaseOnly,
+        trimWhiteSpace: false,
         error: ValidationError.invalidType
     )
 
-    /// Factory instance to create rule which checks for strings with upper case chars only.
+    /// Factory instance to create rule which checks for strings with upper case chars only. Does not trim whitespace.
     public static let upperCaseOnly = StringRegexRule(
         regex: Constants.upperCaseOnly,
+        trimWhiteSpace: false,
         error: ValidationError.invalidType
     )
 }
