@@ -20,13 +20,22 @@
 public protocol ValidatableInterface: class, Validatable {
 
     /**
-     Method to add/remove event listeners for validation
+     Method to add/remove event listeners for validation on input change
 
      - parameter validate: Enable/Disable automatic validation.
      - note: The conforming classes must implement this method, add/remove event listeners for
      input change, and handle validation on the specific input events.
      */
     func validateOnInputChange(_ validate: Bool)
+
+    /**
+     Method to add/remove event listeners for validation on focus loss
+
+     - parameter validate: Enable/Disable automatic validation.
+     - note: The conforming classes must implement this method, add/remove event listeners for
+     focus loss, and handle validation on the specific input events.
+     */
+    func validateOnFocusLoss(_ validate: Bool)
 }
 
 extension ValidatableInterface {

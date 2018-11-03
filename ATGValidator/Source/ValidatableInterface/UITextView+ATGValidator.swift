@@ -61,6 +61,29 @@ extension UITextView: ValidatableInterface {
     }
 
     /**
+     Enable/Disable validation on focus loss.
+
+     - parameter validate: Enable/Disable automatic validation.
+     */
+    public func validateOnFocusLoss(_ validate: Bool) {
+
+        if validate {
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(validateTextView),
+                name: .UITextViewTextDidEndEditing,
+                object: self
+            )
+        } else {
+            NotificationCenter.default.removeObserver(
+                self,
+                name: .UITextViewTextDidEndEditing,
+                object: self
+            )
+        }
+    }
+
+    /**
      Validates the textview's proeprty.
 
      This method gets the rules from validator cache, and calls `satisfyAll`. ie, all rules should

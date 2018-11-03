@@ -52,6 +52,22 @@ extension UITextField: ValidatableInterface {
     }
 
     /**
+     Enable/Disable validation on focus loss.
+
+     - parameter validate: Enable/Disable automatic validation.
+     */
+    public func validateOnFocusLoss(_ validate: Bool) {
+
+        if validate {
+            addTarget(self, action: #selector(validateTextField), for: .editingDidEnd)
+            addTarget(self, action: #selector(validateTextField), for: .editingDidEndOnExit)
+        } else {
+            removeTarget(self, action: #selector(validateTextField), for: .editingDidEnd)
+            removeTarget(self, action: #selector(validateTextField), for: .editingDidEndOnExit)
+        }
+    }
+
+    /**
      Validates the textfield's text proeprty.
 
      This method gets the rules from validator cache, and calls `satisfyAll`. ie, all rules should
