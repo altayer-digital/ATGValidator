@@ -79,12 +79,19 @@ extension FormValidator {
 
      All the input fields will call `satisfyAll:` with their respective rules.
 
+     - parameter shouldInvokeElementHandlers: If set to `true`, all fields will call their
+     validation handlers with corresponding result object. Default is `true`.
      */
-    public func validateForm() {
+    public func validateForm(shouldInvokeElementHandlers: Bool = true) {
 
         for (hash, element) in elements {
             if let rules = ValidatorCache.rules[hash] {
-                self.status[hash] = element.satisfyAll(rules: rules)
+                let result = element.satisfyAll(rules: rules)
+                self.status[hash] = result
+                if shouldInvokeElementHandlers,
+                    let handler = ValidatorCache.validationHandlers[hash] {
+                    handler(result)
+                }
             }
         }
         processFormResults()

@@ -14,6 +14,8 @@
 import XCTest
 @testable import ATGValidator
 
+// TODO: Add unit tests for adding elements with different policies.
+
 class FormValidatorTests: XCTestCase {
 
     private let form = FormValidator()
