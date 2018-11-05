@@ -38,7 +38,7 @@ public struct Result {
 
      - returns: A result object
      */
-    internal static func fail(_ value: Any, withErrors errors: [Error]? = nil) -> Result {
+    public static func fail(_ value: Any, withErrors errors: [Error]? = nil) -> Result {
 
         return Result(status: .failure, errors: errors, value: value)
     }
@@ -50,7 +50,7 @@ public struct Result {
 
      - returns: A result object
      */
-    internal static func succeed(_ value: Any) -> Result {
+    public static func succeed(_ value: Any) -> Result {
 
         return Result(status: .success, errors: nil, value: value)
     }
