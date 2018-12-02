@@ -27,6 +27,7 @@ public struct CharacterSetRule: Rule {
 
     private let characterSet: CharacterSet
     private let mode: Mode
+    private let ignoreCharacterSet: CharacterSet?
     /// Error to be returned if validation fails.
     public var error: Error
 
@@ -35,17 +36,21 @@ public struct CharacterSetRule: Rule {
 
      - parameter characterSet: Character set object from which the string has to check for elements.
      - parameter mode: Mode of rule execution. Default is `contains` between `1` and `Int.max`.
+     - parameter ignoreCharactersIn: Characterset of which all characters will be ignored from the
+     input string before validation.
      - parameter error: Error to be returned in case of validation failure.
      Default is `characterSetError`
      */
     public init(
         characterSet: CharacterSet,
         mode: Mode = .contains(min: 1, max: Int.max),
+        ignoreCharactersIn ignoreCharacterSet: CharacterSet? = nil,
         error: Error = ValidationError.characterSetError
         ) {
 
         self.characterSet = characterSet
         self.mode = mode
+        self.ignoreCharacterSet = ignoreCharacterSet
         self.error = error
     }
 
@@ -65,18 +70,25 @@ public struct CharacterSetRule: Rule {
             return Result.fail(value, withErrors: [ValidationError.invalidType])
         }
 
+        var valueToBeValidated = inputValue
+
+        if let characterSet = ignoreCharacterSet {
+            let passed = valueToBeValidated.unicodeScalars.filter { !characterSet.contains($0) }
+            valueToBeValidated = String(String.UnicodeScalarView(passed))
+        }
+
         var isValid = false
         switch mode {
         case let .contains(minimum, maximum):
-            let count = numberOfOccurences(inString: inputValue, of: characterSet)
+            let count = numberOfOccurences(inString: valueToBeValidated, of: characterSet)
             isValid = (minimum...maximum ~= count)
         case .containsOnly:
-            isValid = inputValue.rangeOfCharacter(from: characterSet.inverted) == nil
+            isValid = valueToBeValidated.rangeOfCharacter(from: characterSet.inverted) == nil
         case .doesNotContain:
-            isValid = inputValue.rangeOfCharacter(from: characterSet) == nil
+            isValid = valueToBeValidated.rangeOfCharacter(from: characterSet) == nil
         }
 
-        return isValid ? Result.succeed(inputValue) : Result.fail(inputValue, withErrors: [error])
+        return isValid ? Result.succeed(valueToBeValidated) : Result.fail(valueToBeValidated, withErrors: [error])
     }
 
     private func numberOfOccurences(inString string: String, of characterSet: CharacterSet) -> Int {
@@ -189,24 +201,57 @@ extension CharacterSetRule {
         )
     }
 
-    /// Factory instance to create rule which checks for strings with numbers only.
-    public static let numbersOnly = CharacterSetRule(
-        characterSet: .decimalDigits,
-        mode: .containsOnly,
-        error: ValidationError.invalidType
-    )
+    /**
+     Factory method to create rule which checks for strings with numbers only.
 
-    /// Factory instance to create rule which checks for strings with uppercase chars only.
-    public static let upperCaseOnly = CharacterSetRule(
-        characterSet: .uppercaseLetters,
-        mode: .containsOnly,
-        error: ValidationError.invalidType
-    )
+     - parameter ignoreCharactersIn: Characterset of which all characters will be ignored from the
+     input string before validation.
+     */
+    public static func numbersOnly(
+        ignoreCharactersIn characterSet: CharacterSet? = nil
+        ) -> CharacterSetRule {
 
-    /// Factory instance to create rule which checks for strings with lowercase chars only.
-    public static let lowerCaseOnly = CharacterSetRule(
-        characterSet: .lowercaseLetters,
-        mode: .containsOnly,
-        error: ValidationError.invalidType
-    )
+        return CharacterSetRule(
+            characterSet: .decimalDigits,
+            mode: .containsOnly,
+            ignoreCharactersIn: characterSet,
+            error: ValidationError.invalidType
+        )
+    }
+
+    /**
+     Factory method to create rule which checks for strings with uppercase chars only.
+
+     - parameter ignoreCharactersIn: Characterset of which all characters will be ignored from the
+     input string before validation.
+     */
+    public static func upperCaseOnly(
+        ignoreCharactersIn characterSet: CharacterSet? = nil
+        ) -> CharacterSetRule {
+
+        return CharacterSetRule(
+            characterSet: .uppercaseLetters,
+            mode: .containsOnly,
+            ignoreCharactersIn: characterSet,
+            error: ValidationError.invalidType
+        )
+    }
+
+    /**
+     Factory method to create rule which checks for strings with lowercase chars only.
+
+     - parameter ignoreCharactersIn: Characterset of which all characters will be ignored from the
+     input string before validation.
+     */
+    public static func lowerCaseOnly(
+        ignoreCharactersIn characterSet: CharacterSet? = nil
+        ) -> CharacterSetRule {
+
+        return CharacterSetRule(
+            characterSet: .lowercaseLetters,
+            mode: .containsOnly,
+            ignoreCharactersIn: characterSet,
+            error: ValidationError.invalidType
+        )
+    }
 }
