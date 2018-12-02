@@ -45,7 +45,7 @@ class ValidatableTests: XCTestCase {
         var rules: [Rule] = [
             StringLengthRule.min(50),
             StringRegexRule.containsNumber(),
-            CharacterSetRule.upperCaseOnly
+            CharacterSetRule.upperCaseOnly()
         ]
         let errors = rules.map({ $0.error }) as? [ValidationError]
 

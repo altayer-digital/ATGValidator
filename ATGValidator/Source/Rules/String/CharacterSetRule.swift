@@ -84,6 +84,10 @@ public struct CharacterSetRule: Rule {
             isValid = (minimum...maximum ~= count)
         case .containsOnly:
             isValid = valueToBeValidated.rangeOfCharacter(from: characterSet.inverted) == nil
+            // This is to fail strings with characters only from ignored set.
+            if (valueToBeValidated.count != inputValue.count) && valueToBeValidated.isEmpty {
+                isValid = false
+            }
         case .doesNotContain:
             isValid = valueToBeValidated.rangeOfCharacter(from: characterSet) == nil
         }

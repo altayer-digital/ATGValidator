@@ -225,7 +225,7 @@ class CharacterSetRuleTests: XCTestCase {
 
     func testNumbersOnly() {
 
-        let rule = CharacterSetRule.numbersOnly
+        var rule = CharacterSetRule.numbersOnly()
 
         var testValue = "0555898666"
         var result = rule.validate(value: testValue)
@@ -244,11 +244,24 @@ class CharacterSetRuleTests: XCTestCase {
         XCTAssertEqual(result.status, .success)
         XCTAssertNil(result.errors)
         XCTAssertEqual(result.value as? String, testValue)
+
+        rule = CharacterSetRule.numbersOnly(ignoreCharactersIn: .whitespaces)
+        testValue = "7623 2836 3 44 3435 "
+        result = rule.validate(value: testValue)
+        XCTAssertEqual(result.status, .success)
+        XCTAssertNil(result.errors)
+        XCTAssertEqual(result.value as? String, "762328363443435")
+
+        testValue = "    "
+        result = rule.validate(value: testValue)
+        XCTAssertEqual(result.status, .failure)
+        XCTAssertNotNil(result.errors)
+        XCTAssertEqual(result.value as? String, "")
     }
 
     func testLowerCaseOnly() {
 
-        let rule = CharacterSetRule.lowerCaseOnly
+        var rule = CharacterSetRule.lowerCaseOnly()
 
         var testValue = "lowercase"
         var result = rule.validate(value: testValue)
@@ -267,11 +280,24 @@ class CharacterSetRuleTests: XCTestCase {
         XCTAssertEqual(result.status, .success)
         XCTAssertNil(result.errors)
         XCTAssertEqual(result.value as? String, testValue)
+
+        rule = CharacterSetRule.lowerCaseOnly(ignoreCharactersIn: CharacterSet.decimalDigits)
+        testValue = "942dh88efbuwmd0efnwed5wjfw3fefhebf"
+        result = rule.validate(value: testValue)
+        XCTAssertEqual(result.status, .success)
+        XCTAssertNil(result.errors)
+        XCTAssertEqual(result.value as? String, "dhefbuwmdefnwedwjfwfefhebf")
+
+        testValue = "0555"
+        result = rule.validate(value: testValue)
+        XCTAssertEqual(result.status, .failure)
+        XCTAssertNotNil(result.errors)
+        XCTAssertEqual(result.value as? String, "")
     }
 
     func testUpperCaseOnly() {
 
-        let rule = CharacterSetRule.upperCaseOnly
+        var rule = CharacterSetRule.upperCaseOnly()
 
         var testValue = "UPPERCASE"
         var result = rule.validate(value: testValue)
@@ -290,5 +316,18 @@ class CharacterSetRuleTests: XCTestCase {
         XCTAssertEqual(result.status, .success)
         XCTAssertNil(result.errors)
         XCTAssertEqual(result.value as? String, testValue)
+
+        rule = CharacterSetRule.upperCaseOnly(ignoreCharactersIn: .whitespaces)
+        testValue = " WEFW VERUVNE CWEMWOGBWE SDWKXMAEDNWEF EE "
+        result = rule.validate(value: testValue)
+        XCTAssertEqual(result.status, .success)
+        XCTAssertNil(result.errors)
+        XCTAssertEqual(result.value as? String, "WEFWVERUVNECWEMWOGBWESDWKXMAEDNWEFEE")
+
+        testValue = "    "
+        result = rule.validate(value: testValue)
+        XCTAssertEqual(result.status, .failure)
+        XCTAssertNotNil(result.errors)
+        XCTAssertEqual(result.value as? String, "")
     }
 }
