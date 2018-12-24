@@ -38,6 +38,7 @@
 		9658BA18214107B600DADE29 /* CharacterSetRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9658BA17214107B600DADE29 /* CharacterSetRule.swift */; };
 		966BD44C214E445500F7CC2A /* StringRegexRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966BD44B214E445500F7CC2A /* StringRegexRuleTests.swift */; };
 		96D50077214E75FF00F1E60E /* CharacterSetRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D50076214E75FF00F1E60E /* CharacterSetRuleTests.swift */; };
+		98955A1E21D20F7D0017499B /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98955A1D21D20F7D0017499B /* RuleTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		9658BA17214107B600DADE29 /* CharacterSetRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSetRule.swift; sourceTree = "<group>"; };
 		966BD44B214E445500F7CC2A /* StringRegexRuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringRegexRuleTests.swift; sourceTree = "<group>"; };
 		96D50076214E75FF00F1E60E /* CharacterSetRuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSetRuleTests.swift; sourceTree = "<group>"; };
+		98955A1D21D20F7D0017499B /* RuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		961B5F072147A98F00067B6E /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				98955A1D21D20F7D0017499B /* RuleTests.swift */,
 				961B5F092147A9BD00067B6E /* ResultTests.swift */,
 				962B15982147D86E002B9E15 /* ValidatableTests.swift */,
 				962B159C2147F8BA002B9E15 /* FormValidatorTests.swift */,
@@ -378,6 +381,7 @@
 			files = (
 				96D50077214E75FF00F1E60E /* CharacterSetRuleTests.swift in Sources */,
 				962B159D2147F8BA002B9E15 /* FormValidatorTests.swift in Sources */,
+				98955A1E21D20F7D0017499B /* RuleTests.swift in Sources */,
 				96248FCC214906AE00FB1D75 /* EqualityRuleTests.swift in Sources */,
 				966BD44C214E445500F7CC2A /* StringRegexRuleTests.swift in Sources */,
 				96248FD0214919E100FB1D75 /* StringLengthRuleTests.swift in Sources */,

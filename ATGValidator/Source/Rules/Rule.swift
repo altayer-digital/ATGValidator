@@ -33,3 +33,30 @@ public protocol Rule {
      */
     func validate(value: Any) -> Result
 }
+
+public extension Rule {
+
+    /**
+     Chaining method to set custom error object.
+     - parameter error: The value to be set.
+     - returns: Returns new object with given error.
+     */
+    public func with(error: Error) -> Rule {
+
+        var rule = self
+        rule.error = error
+        return rule
+    }
+
+    /**
+     Chaining method to set errorMessage to error object using CustomValidationError.
+     - parameter errorMessage: The value to be set.
+     - returns: Returns new object with a new error object which has given error message.
+     */
+    public func with(errorMessage: String) -> Rule {
+
+        var rule = self
+        rule.error = CustomValidationError(errorMessage)
+        return rule
+    }
+}

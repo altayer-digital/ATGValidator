@@ -30,3 +30,17 @@ public enum ValidationError: Error {
     case characterSetError
     case occurrencesNotInRange
 }
+
+/// Validation error with custom error messages.
+public struct CustomValidationError: LocalizedError {
+
+    private let errorMessage: String?
+
+    public init(_ errorMessage: String?) {
+        self.errorMessage = errorMessage
+    }
+
+    public var errorDescription: String? {
+        return errorMessage
+    }
+}
