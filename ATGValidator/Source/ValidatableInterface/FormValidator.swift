@@ -114,7 +114,10 @@ extension FormValidator {
      - parameter shouldInvokeElementHandlers: If set to `true`, all fields will call their
      validation handlers with corresponding result object. Default is `true`.
      */
-    public func validateForm(shouldInvokeElementHandlers: Bool = true) {
+    public func validateForm(
+        shouldInvokeElementHandlers: Bool = true,
+        completion: ValidationHandler? = nil
+        ) {
 
         for (hash, element) in elements {
             if let rules = ValidatorCache.rules[hash] {
@@ -126,15 +129,16 @@ extension FormValidator {
                 }
             }
         }
-        processFormResults()
+        processFormResults(completion: completion)
     }
 
-    private func processFormResults() {
+    private func processFormResults(completion: ValidationHandler? = nil) {
 
         var formResult = Result.succeed(self)
         for item in self.status.values {
             formResult = formResult.merge(item)
         }
         self.handler?(formResult)
+        completion?(formResult)
     }
 }
