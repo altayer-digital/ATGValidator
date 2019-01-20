@@ -48,13 +48,13 @@ extension UITextView: ValidatableInterface {
             NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(validateTextView),
-                name: .UITextViewTextDidChange,
+                name: UITextView.textDidChangeNotification,
                 object: self
             )
         } else {
             NotificationCenter.default.removeObserver(
                 self,
-                name: .UITextViewTextDidChange,
+                name: UITextView.textDidChangeNotification,
                 object: self
             )
         }
@@ -71,13 +71,13 @@ extension UITextView: ValidatableInterface {
             NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(validateTextView),
-                name: .UITextViewTextDidEndEditing,
+                name: UITextView.textDidEndEditingNotification,
                 object: self
             )
         } else {
             NotificationCenter.default.removeObserver(
                 self,
-                name: .UITextViewTextDidEndEditing,
+                name: UITextView.textDidEndEditingNotification,
                 object: self
             )
         }
