@@ -78,7 +78,7 @@ extension UITextField: ValidatableInterface {
      Please remember that both `validationHandler` and `formHandler` needs to be called with the
      result object.
      */
-    @objc private func validateTextField() {
+    @objc func validateTextField() {
 
         guard let rules = validationRules else {
             return
