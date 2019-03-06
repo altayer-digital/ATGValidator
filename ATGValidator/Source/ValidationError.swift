@@ -16,6 +16,7 @@ public enum ValidationError: Error {
 
     case invalidType
     case notEqual
+    case equal
     case shorterThanMinimumLength
     case longerThanMaximumLength
     case lengthOutOfRange

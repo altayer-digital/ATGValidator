@@ -14,7 +14,15 @@
 /// Equality rule. Value to be checked for this rule must be conforming to `Equatable`.
 public struct EqualityRule<T: Equatable>: Rule {
 
+    /// Mode of rule execution.
+    public enum Mode {
+
+        case equal
+        case notEqual
+    }
+
     let test: T
+    private let mode: Mode
     /// Error to be returned if validation fails.
     public var error: Error
     /**
@@ -23,10 +31,15 @@ public struct EqualityRule<T: Equatable>: Rule {
      - parameter value: The value to be compared against.
      - parameter error: Error to be returned in case of validation failure.
      */
-    public init(value: T, error: Error = ValidationError.notEqual) {
+    public init(value: T, mode: Mode = .equal, error: Error? = nil) {
 
         self.test = value
-        self.error = error
+        self.mode = mode
+        if let error = error {
+            self.error = error
+        } else {
+            self.error = mode == .equal ? ValidationError.notEqual : ValidationError.equal
+        }
     }
 
     /**
@@ -43,6 +56,10 @@ public struct EqualityRule<T: Equatable>: Rule {
             return Result.fail(value, withErrors: [ValidationError.invalidType])
         }
 
-        return valueToTest == test ? .succeed(valueToTest) : .fail(valueToTest, withErrors: [error])
+        if mode == .equal {
+            return valueToTest == test ? .succeed(valueToTest) : .fail(valueToTest, withErrors: [error])
+        } else {
+            return valueToTest != test ? .succeed(valueToTest) : .fail(valueToTest, withErrors: [error])
+        }
     }
 }
