@@ -18,15 +18,20 @@ class RuleTests: XCTestCase {
 
     func testFailureResultWithCustomError() {
 
+        struct CustomError: Error {
+
+            let errorMessage: String
+        }
+
         let customErrorMessage = "custom error message"
-        let emailRule = StringRegexRule.email.with(
-            error: CustomValidationError(customErrorMessage)
-        )
+        let customError = CustomError(errorMessage: customErrorMessage)
+        let emailRule = StringRegexRule.email.with(error: customError)
         let invalidEmailTestValue = "invalid email"
         let result = emailRule.validate(value: invalidEmailTestValue)
 
         XCTAssertEqual(result.status, .failure)
         XCTAssertNotNil(result.errors?.first)
+        XCTAssertEqual(customError, result.errors?.first)
         XCTAssertEqual(customErrorMessage, result.errors?.first?.localizedDescription)
     }
 

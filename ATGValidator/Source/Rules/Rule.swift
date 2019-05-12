@@ -49,14 +49,14 @@ public extension Rule {
     }
 
     /**
-     Chaining method to set errorMessage to error object using CustomValidationError.
+     Chaining method to set errorMessage to error object using `.custom(errorMessage: String)`.
      - parameter errorMessage: The value to be set.
      - returns: Returns new object with a new error object which has given error message.
      */
     public func with(errorMessage: String) -> Rule {
 
         var rule = self
-        rule.error = CustomValidationError(errorMessage)
+        rule.error = ValidationError.custom(errorMessage: errorMessage)
         return rule
     }
 }

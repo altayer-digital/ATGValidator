@@ -30,18 +30,16 @@ public enum ValidationError: Error {
     case paymentCardNotSupported
     case characterSetError
     case occurrencesNotInRange
-}
+    case custom(errorMessage: String?)
 
-/// Validation error with custom error messages.
-public struct CustomValidationError: LocalizedError {
-
-    private let errorMessage: String?
-
-    public init(_ errorMessage: String?) {
-        self.errorMessage = errorMessage
-    }
-
-    public var errorDescription: String? {
-        return errorMessage
+    public var customErrorMessage: String? {
+        switch self {
+        case .custom(let errorMessage):
+            return errorMessage
+        default:
+            return nil
+        }
     }
 }
+
+extension ValidationError: Equatable {}
