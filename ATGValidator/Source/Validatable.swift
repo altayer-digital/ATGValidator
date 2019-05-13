@@ -63,5 +63,6 @@ extension Bool: Validatable {}
 extension Int: Validatable {}
 extension Double: Validatable {}
 extension Float: Validatable {}
+extension CGFloat: Validatable {}
 extension Array: Validatable {}
 extension Date: Validatable {}
