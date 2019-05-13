@@ -28,7 +28,7 @@ class RuleTests: XCTestCase {
 
     func testFailureResultWithCustomError() {
 
-        struct CustomError: Error {
+        struct CustomError: Error, Equatable {
 
             let errorMessage: String
         }
@@ -41,8 +41,9 @@ class RuleTests: XCTestCase {
 
         XCTAssertEqual(result.status, .failure)
         XCTAssertNotNil(result.errors?.first)
-        XCTAssertEqual(customError, result.errors?.first)
-        XCTAssertEqual(customErrorMessage, result.errors?.first?.localizedDescription)
+        let error = result.errors?.first as? CustomError
+        XCTAssertEqual(customError, error)
+        XCTAssertEqual(customErrorMessage, error?.errorMessage)
     }
 
     func testFailureResultWithCustomErrorMessage() {
@@ -54,6 +55,7 @@ class RuleTests: XCTestCase {
 
         XCTAssertEqual(result.status, .failure)
         XCTAssertNotNil(result.errors?.first)
-        XCTAssertEqual(customErrorMessage, result.errors?.first?.localizedDescription)
+        let error = result.errors?.first as? ValidationError
+        XCTAssertEqual(customErrorMessage, error?.customErrorMessage)
     }
 }
