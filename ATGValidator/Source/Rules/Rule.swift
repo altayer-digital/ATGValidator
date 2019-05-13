@@ -51,7 +51,7 @@ public extension Rule {
      - parameter error: The value to be set.
      - returns: Returns new object with given error.
      */
-    public func with(error: Error) -> Rule {
+    func with(error: Error) -> Rule {
 
         var rule = self
         rule.error = error
@@ -63,7 +63,7 @@ public extension Rule {
      - parameter errorMessage: The value to be set.
      - returns: Returns new object with a new error object which has given error message.
      */
-    public func with(errorMessage: String) -> Rule {
+    func with(errorMessage: String) -> Rule {
 
         var rule = self
         rule.error = ValidationError.custom(errorMessage: errorMessage)

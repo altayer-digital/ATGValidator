@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.license       = { :type => "MIT", :file => "LICENSE.md" }
   s.author        = { "surajthomask" => "suthomas@altayer.com" }
   s.platform      = :ios, "8.0"
+  s.swift_version = '4.2'
   s.source        = { :git => "https://github.com/altayer-digital/ATGValidator.git", :tag => "#{s.version}" }
   s.source_files  = "ATGValidator", "ATGValidator/**/*.swift"
   s.exclude_files = "ATGValidator/Info.plist"
