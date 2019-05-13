@@ -7,11 +7,13 @@ platform :ios do
   lane :debug_build do
     skip_docs
     xcodebuild(configuration: "Debug", clean: true, build: true)
+    scan
   end
 
   lane :release_build do
     skip_docs
     xcodebuild(configuration: "Release", clean: true, build: true)
+    scan
   end
 
 end
