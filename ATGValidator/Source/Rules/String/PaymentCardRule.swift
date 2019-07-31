@@ -25,7 +25,9 @@
 public struct PaymentCardRule: Rule {
 
     private let acceptedTypes: [PaymentCardType]
-    /// Error to be returned if validation fails.
+    /// Error to be returned if entered card number is invalid.
+    public var invalidCardNumberError: Error
+    /// Error to be returned if detected card type is not supported.
     public var error: Error
 
     /**
@@ -38,10 +40,12 @@ public struct PaymentCardRule: Rule {
      */
     public init(
         acceptedTypes: [PaymentCardType] = PaymentCardType.all,
-        error: Error = ValidationError.paymentCardNotSupported
+        invalidCardNumberError: Error = ValidationError.invalidPaymentCardNumber,
+        cardTypeNotSupportedError error: Error = ValidationError.paymentCardNotSupported
         ) {
 
         self.acceptedTypes = acceptedTypes
+        self.invalidCardNumberError = invalidCardNumberError
         self.error = error
     }
 
@@ -82,20 +86,20 @@ public struct PaymentCardRule: Rule {
         guard luhnCheck(cardNumber: formattedCardNumber) else {
             return .fail(
                 suggestedCardType ?? formattedCardNumber,
-                withErrors: [ValidationError.invalidPaymentCardNumber]
+                withErrors: [invalidCardNumberError]
             )
         }
         guard let cardType = PaymentCardType(cardNumber: formattedCardNumber) else {
             return .fail(
                 suggestedCardType ?? formattedCardNumber,
-                withErrors: [ValidationError.invalidPaymentCardNumber]
+                withErrors: [invalidCardNumberError]
             )
         }
 
         let isSupported = acceptedTypes.contains(cardType)
         return isSupported ? .succeed(cardType) : .fail(
             cardType,
-            withErrors: [ValidationError.paymentCardNotSupported]
+            withErrors: [error]
         )
     }
 

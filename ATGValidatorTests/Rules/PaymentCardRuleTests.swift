@@ -38,6 +38,43 @@ class PaymentCardRuleTests: XCTestCase {
         XCTAssertEqual(result.value as? Int, testValue)
     }
 
+    func testCustomErrors() {
+
+        struct CustomError: Error, Equatable {
+
+            let errorMessage: String
+        }
+
+        let customErrorMessage1 = "custom error message 1"
+        let customError1 = CustomError(errorMessage: customErrorMessage1)
+        let customErrorMessage2 = "custom error message 2"
+        let customError2 = CustomError(errorMessage: customErrorMessage2)
+
+        let rule = PaymentCardRule(
+            acceptedTypes: [.amex],
+            invalidCardNumberError: customError1,
+            cardTypeNotSupportedError: customError2
+        )
+
+        var testValue = "37828224631"
+        var result = rule.validate(value: testValue)
+
+        XCTAssertEqual(result.status, .failure)
+        XCTAssertNotNil(result.errors?.first)
+        var error = result.errors?.first as? CustomError
+        XCTAssertEqual(customError1, error)
+        XCTAssertEqual(customErrorMessage1, error?.errorMessage)
+
+        testValue = "5555555555554444"
+        result = rule.validate(value: testValue)
+
+        XCTAssertEqual(result.status, .failure)
+        XCTAssertNotNil(result.errors?.first)
+        error = result.errors?.first as? CustomError
+        XCTAssertEqual(customError2, error)
+        XCTAssertEqual(customErrorMessage2, error?.errorMessage)
+    }
+
     func testFailure() {
 
         let rule = PaymentCardRule(acceptedTypes: [.amex])
