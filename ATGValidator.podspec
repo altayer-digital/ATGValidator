@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = "ATGValidator"
-  s.version       = "1.2.0"
+  s.version       = "1.3.0"
   s.summary       = "iOS validation framework with form validation support"
   s.description   = <<-DESC
 		iOS validation framework with form validation support written in swift. Rule based validation with in built support for UITextField and UITextView, and can be extended for custom UI components. Supports credit card validation and suggestions based on input.
