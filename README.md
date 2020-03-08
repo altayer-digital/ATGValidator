@@ -281,7 +281,7 @@ emailRule = emailRule.with(errorMessage: "Email is not correct..!")
 ```
 
 ## ValidatorCache
-This is a custom in memory storage used to hold all rules, valid values, form handler and validation handlers closures. Please feel free to explore how it is implemented.
+This is a custom in memory storage used to hold all rules, form handler and validation handlers closures. Please feel free to explore how it is implemented.
 
 ## Due Credits
 

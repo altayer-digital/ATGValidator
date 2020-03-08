@@ -81,9 +81,7 @@ extension UITextField: ValidatableInterface {
      Validates the textfield's text proeprty.
 
      This method gets the rules from validator cache, and calls `satisfyAll`. ie, all rules should
-     pass to get a success result. If it passes all rules, the input value will be saved as
-     validValue. If the result is failure, and a valid value is present, same will be assigned to
-     result.value.
+     pass to get a success result.
 
      Please remember that both `validationHandler` and `formHandler` needs to be called with the
      result object.
@@ -94,12 +92,7 @@ extension UITextField: ValidatableInterface {
             return
         }
 
-        var result = satisfyAll(rules: rules)
-        if result.status == .success {
-            validValue = result.value
-        } else if let value = validValue {
-            result.value = value
-        }
+        let result = satisfyAll(rules: rules)
         validationHandler?(result)
         formHandler?(result)
     }

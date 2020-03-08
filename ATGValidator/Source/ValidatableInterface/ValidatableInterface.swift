@@ -59,16 +59,6 @@ extension ValidatableInterface {
 
 extension ValidatableInterface where Self: Hashable {
 
-    /// Variable to maintain last valid value.
-    public var validValue: Any? {
-        get {
-            return ValidatorCache.validValues[self.hashValue]
-        }
-        set {
-            ValidatorCache.validValues[self.hashValue] = newValue
-        }
-    }
-
     /// Validation rules set on the interface.
     public var validationRules: [Rule]? {
         get {
@@ -108,7 +98,6 @@ extension ValidatableInterface where Self: Hashable {
     /// Method to clean up all validation related structs and closures.
     public func cleanUpFromValidatorCache() {
 
-        validValue = nil
         validationRules = nil
         validationHandler = nil
         formHandler = nil
