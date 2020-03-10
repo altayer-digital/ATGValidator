@@ -40,7 +40,7 @@ public enum ValidationError: Error {
     case paymentCardNotSupported
     case characterSetError
     case occurrencesNotInRange
-    case custom(errorMessage: String?)
+    case custom(errorMessage: String)
 
     public var customErrorMessage: String? {
         switch self {
@@ -51,5 +51,7 @@ public enum ValidationError: Error {
         }
     }
 }
+
+// MARK: - ValidationError: Equatable
 
 extension ValidationError: Equatable {}
