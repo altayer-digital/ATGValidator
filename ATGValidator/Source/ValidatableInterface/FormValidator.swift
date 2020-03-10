@@ -43,7 +43,8 @@ public class FormValidator {
         case onFocusLoss
     }
 
-    private var elements: [Int: ValidatableInterface] = [:]
+    private var elements: [Int] = []
+    private var elementsStore: [Int: ValidatableInterface] = [:]
     private var status: [Int: Result] = [:]
 
     /// Validation handler closure to be executed on validation status change.
@@ -74,9 +75,10 @@ extension FormValidator {
         policy: AutoValidationPolicy = .onFocusLoss
         ) where V: Hashable {
 
-        if !elements.keys.contains(element.hashValue) {
+        if !elements.contains(element.hashValue) {
 
-            elements[element.hashValue] = element
+            elements.append(element.hashValue)
+            elementsStore[element.hashValue] = element
 
             switch policy {
             case .onInputChange:
@@ -107,7 +109,10 @@ extension FormValidator {
      */
     public func remove<V: ValidatableInterface>(_ element: V) where V: Hashable {
 
-        elements.removeValue(forKey: element.hashValue)
+        if let index = elements.firstIndex(of: element.hashValue) {
+            elements.remove(at: index)
+        }
+        elementsStore.removeValue(forKey: element.hashValue)
         if element.validationHandler == nil {
             element.validateOnInputChange(false)
             element.validateOnFocusLoss(false)
@@ -129,7 +134,10 @@ extension FormValidator {
         completion: ValidationHandler? = nil
         ) {
 
-        for (hash, element) in elements {
+        for hash in elements {
+            guard let element = elementsStore[hash] else {
+                continue
+            }
             if let rules = ValidatorCache.rules[hash] {
                 let result = element.satisfyAll(rules: rules)
                 self.status[hash] = result
@@ -144,9 +152,11 @@ extension FormValidator {
 
     private func processFormResults(completion: ValidationHandler? = nil) {
 
-        var formResult = Result.succeed(self)
-        for item in self.status.values {
-            formResult = formResult.merge(item)
+        let formResult = elements.reduce(Result.succeed(self)) { (previousResult, hash) -> Result in
+            if let item = status[hash] {
+                return previousResult.merge(item)
+            }
+            return previousResult
         }
         self.handler?(formResult)
         completion?(formResult)
