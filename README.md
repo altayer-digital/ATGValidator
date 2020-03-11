@@ -11,40 +11,11 @@ You can use it to validate different data types directly, or validate ui compone
 
 Best of all, you will get a **form validator** which consolidates validation results of all ui components added to it.
 
-## Basic Usage
+### Sample Project
 
-You can validate common data types out of the box as illustrated below;
+![](https://i.imgur.com/1TWGG3z.gif)
 
-```swift
-"Example with 1 number".satisfyAll(rules: [CharacterSetRule.containsNumber()]).status   // success
-"Example with more than 20 characters".satisfyAll(rules: [StringLengthRule.max(20)]).status       // failure
-472.satisfyAll(rules: [EqualityRule(value: 472.5)])                                     // failure
-301.satisfyAny(rules: [RangeRule(min: 200, max: 299), EqualityRule(value: 304)])        // failure
-200.satisfyAny(rules: [RangeRule(min: 200, max: 299), EqualityRule(value: 304)])        // success
-```
-
-As for validating contents of a ui component, please see the example below;
-
-```swift
-textfield.validationRules = [CharacterSetRule.lowerCaseOnly(ignoreCharactersIn: .whitespaces)]
-textfield.validationHandler = { result in
-    // This block will be executed with relevant result whenever validation is done.
-    print(result.status)    // success
-}
-// Below line is to manually trigger validation.
-textfield.validateTextField()
-```
-
-In order to use form validator, we need to create a `FormValidator` instance and add required ui elements to the form validator. We can either call the validateForm method directly, or associate a handler closure to the form validator, which will be called when any of the added ui elements' value changes.
-```swift
-let formValidator = FormValidator()
-formValidator.add(textfield)
-// Add more ui elements here.
-formValidator.validateForm { result in
-    print(result)
-}
-```
-<p><span style="color:red">Please read-on below for detailed documentation.</span>.</p>
+You can find a sample project with form validation in [here](https://github.com/altayer-digital/examples/raw/master/iOS/FormValidationSample_CompleteProject.zip).
 
 ## Installation
 
@@ -208,6 +179,38 @@ In order to identify the card type while you are typing in the number, please us
 Please note that a minimum of 4 characters needs to be entered before the rule starts finding card type suggestions.
 
 ## Advanced Usage
+
+You can validate common data types out of the box as illustrated below;
+
+```swift
+"Example with 1 number".satisfyAll(rules: [CharacterSetRule.containsNumber()]).status   // success
+"Example with more than 20 characters".satisfyAll(rules: [StringLengthRule.max(20)]).status       // failure
+472.satisfyAll(rules: [EqualityRule(value: 472.5)])                                     // failure
+301.satisfyAny(rules: [RangeRule(min: 200, max: 299), EqualityRule(value: 304)])        // failure
+200.satisfyAny(rules: [RangeRule(min: 200, max: 299), EqualityRule(value: 304)])        // success
+```
+
+As for validating contents of a ui component, please see the example below;
+
+```swift
+textfield.validationRules = [CharacterSetRule.lowerCaseOnly(ignoreCharactersIn: .whitespaces)]
+textfield.validationHandler = { result in
+    // This block will be executed with relevant result whenever validation is done.
+    print(result.status)    // success
+}
+// Below line is to manually trigger validation.
+textfield.validateTextField()
+```
+
+In order to use form validator, we need to create a `FormValidator` instance and add required ui elements to the form validator. We can either call the validateForm method directly, or associate a handler closure to the form validator, which will be called when any of the added ui elements' value changes.
+```swift
+let formValidator = FormValidator()
+formValidator.add(textfield)
+// Add more ui elements here.
+formValidator.validateForm { result in
+    print(result)
+}
+```
 
 ### Validatable
  Validatable is the base protocol which is conformed by any data type that can be validated. Most commonly used types in Swift conforms to Validatable out-of-the-box. Below is the list of all data types that conforms to Validatable out-of-the-box.
